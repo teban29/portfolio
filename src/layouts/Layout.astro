@@ -9,6 +9,8 @@ const site = {
   image: "/og-image.png",
   twitter: "@teban29",
 };
+
+const ogImageUrl = new URL(site.image, Astro.site).href;
 ---
 
 <!doctype html>
@@ -43,7 +45,7 @@ const site = {
     <meta property="og:url" content={site.url} />
     <meta property="og:title" content={site.title} />
     <meta property="og:description" content={site.description} />
-    <meta property="og:image" content={`${site.url}${site.image}`} />
+    <meta property="og:image" content={ogImageUrl} />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta property="og:image:alt" content="Esteban Cardona — Desarrollador Full-Stack Freelance" />
@@ -55,7 +57,7 @@ const site = {
     <meta name="twitter:url" content={site.url} />
     <meta name="twitter:title" content={site.title} />
     <meta name="twitter:description" content={site.description} />
-    <meta name="twitter:image" content={`${site.url}${site.image}`} />
+    <meta name="twitter:image" content={ogImageUrl} />
     <meta name="twitter:image:alt" content="Esteban Cardona — Desarrollador Full-Stack Freelance" />
     <meta name="twitter:site" content={site.twitter} />
     <meta name="twitter:creator" content={site.twitter} />
@@ -68,7 +70,7 @@ const site = {
       "givenName": "Esteban",
       "familyName": "Cardona",
       "url": site.url,
-      "image": `${site.url}/og.svg`,
+      "image": ogImageUrl,
       "jobTitle": "Desarrollador Full-Stack Freelance",
       "description": site.description,
       "knowsAbout": [
