@@ -5,11 +5,17 @@ import tailwindcss from '@tailwindcss/vite';
 
 import vercel from '@astrojs/vercel';
 
+import sitemap from '@astrojs/sitemap';
+
 // https://astro.build/config
 export default defineConfig({
+  site: 'https://ecardona.tech',
+
   vite: {
     plugins: [tailwindcss()]
   },
 
-  adapter: vercel()
+  adapter: vercel(),
+
+  integrations: [sitemap()]
 });
