@@ -1,0 +1,76 @@
+<button
+  id="theme-toggle"
+  class="relative flex h-8 w-8 items-center justify-center rounded-full transition-colors duration-300 hover:bg-white/10 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-glow"
+  aria-label="Cambiar tema"
+  type="button"
+>
+  <svg
+    class="sun h-4 w-4 text-accent transition-all duration-500"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="1.75"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  >
+    <circle cx="12" cy="12" r="5" />
+    <line x1="12" y1="1" x2="12" y2="3" />
+    <line x1="12" y1="21" x2="12" y2="23" />
+    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+    <line x1="1" y1="12" x2="3" y2="12" />
+    <line x1="21" y1="12" x2="23" y2="12" />
+    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
+    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+  </svg>
+  <svg
+    class="moon absolute h-[14px] w-[14px] text-primary-glow opacity-0 transition-all duration-500"
+    viewBox="0 0 24 24"
+    fill="currentColor"
+  >
+    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+  </svg>
+</button>
+
+<script>
+  (function () {
+    const btn = document.getElementById("theme-toggle");
+    if (!btn) return;
+
+    const html = document.documentElement;
+    const sun = btn.querySelector(".sun") as SVGElement;
+    const moon = btn.querySelector(".moon") as SVGElement;
+    if (!sun || !moon) return;
+
+    function updateIcons() {
+      const isDark = html.dataset.theme === "dark";
+      if (isDark) {
+        sun.style.opacity = "0";
+        sun.style.transform = "rotate(90deg) scale(0.5)";
+        moon.style.opacity = "1";
+        moon.style.transform = "rotate(0deg) scale(1)";
+      } else {
+        sun.style.opacity = "1";
+        sun.style.transform = "rotate(0deg) scale(1)";
+        moon.style.opacity = "0";
+        moon.style.transform = "rotate(-90deg) scale(0.5)";
+      }
+    }
+
+    updateIcons();
+
+    btn.addEventListener("click", () => {
+      const next = html.dataset.theme === "dark" ? "light" : "dark";
+      html.dataset.theme = next;
+      localStorage.setItem("theme", next);
+      updateIcons();
+    });
+  })();
+</script>
+
+<style is:inline>
+  #theme-toggle {
+    cursor: pointer;
+    background: transparent;
+  }
+</style>

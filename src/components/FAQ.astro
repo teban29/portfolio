@@ -1,0 +1,170 @@
+<section
+  id="faq"
+  class="relative bg-surface py-24 sm:py-32"
+>
+  <div class="mx-auto max-w-6xl px-6">
+    <div class="mb-14 sm:mb-20">
+      <p class="mb-3 font-mono text-xs font-medium tracking-wide text-primary">
+        FAQ
+      </p>
+      <h2 class="text-balance font-sans text-[clamp(2rem,4vw,3rem)] font-bold leading-[1.12] tracking-[-0.02em] text-ink">
+        Lo que seguro<br />te estás preguntando
+      </h2>
+      <p class="mt-4 max-w-md text-base leading-relaxed text-muted">
+        Respuestas directas. Sin vueltas ni letra chica.
+      </p>
+    </div>
+
+    <div class="mx-auto max-w-2xl divide-y divide-border">
+      {
+        [
+          {
+            q: "¿Cómo cobrás tus proyectos?",
+            a: "Por proyecto con milestones claros y entregables definidos. Podemos trabajar con precio fijo si el alcance está claro, o por hora si preferís flexibilidad. En cualquier caso, sin sorpresas: sabés cuánto y cuándo desde el día uno.",
+          },
+          {
+            q: "¿Con qué tecnologías trabajás más?",
+            a: "Full-stack de verdad. En backend: Django, Laravel y Go. En frontend: React, Next.js y Astro. Docker para entornos consistentes. El stack lo elijo según tu proyecto, no al revés.",
+          },
+          {
+            q: "¿Podés sumarte a un equipo que ya tiene su stack?",
+            a: "Sin problema. Me adapto a la metodología y herramientas que ya uses — Git, Slack, Jira, Linear, lo que sea. No necesito onboarding de 2 semanas para empezar a producir.",
+          },
+          {
+            q: "¿Cuánto tarda un proyecto típico?",
+            a: "Depende del alcance. Una landing page bien hecha: 1-2 semanas. Un e-commerce completo con dashboard: 3-4 meses. Un MVP para validar una idea: 4-8 semanas. Lo definimos juntos con un cronograma realista.",
+          },
+          {
+            q: "¿Ofrecés mantenimiento después de entregar el proyecto?",
+            a: "Sí. Podés contratarme como soporte continuo — ajustes, nuevas features, monitoreo — o te entrego todo documentado para que tu equipo lo mantenga. Lo que te sirva más.",
+          },
+          {
+            q: "¿Qué pasa si necesito cambios a mitad del proyecto?",
+            a: "Es normal y esperado. El feedback es parte del proceso, no un evento al final. Cambios pequeños los ajusto sobre la marcha. Si es algo grande, lo charlamos, ajustamos el alcance y seguimos. Sin drama.",
+          },
+          {
+            q: "¿Trabajás con clientes fuera de Colombia?",
+            a: "Sí, 100% remoto. He trabajado con equipos en distintos países. Mientras tengas internet y una idea clara de lo que necesitás, la distancia no es problema.",
+          },
+          {
+            q: "¿Por qué contratar un freelance y no una agencia?",
+            a: "Hablas directamente con quien escribe el código. Sin capas de project managers, sin markups del 40%, sin 'lo consulto con el equipo'. Respuestas rápidas, decisiones ágiles, y un interés genuino en que tu proyecto funcione.",
+          },
+        ].map((item, i) => (
+          <div class="faq-item group" style={`--faq-index: ${i}`}>
+            <button
+              class="faq-trigger flex w-full items-center justify-between gap-6 py-5 text-left transition-colors duration-200 hover:text-primary"
+              aria-expanded="false"
+              type="button"
+            >
+              <span class="font-sans text-base font-medium leading-snug text-ink sm:text-lg">
+                {item.q}
+              </span>
+              <span class="faq-icon relative flex h-6 w-6 shrink-0 items-center justify-center">
+                <span class="absolute h-0.5 w-3 rounded-full bg-ink/30 transition-all duration-300 group-hover:bg-primary"></span>
+                <span class="faq-icon-vertical absolute h-3 w-0.5 rounded-full bg-ink/30 transition-all duration-300 group-hover:bg-primary"></span>
+              </span>
+            </button>
+            <div class="faq-answer overflow-hidden transition-all duration-300 ease-out" style="max-height: 0">
+              <p class="pb-5 pr-4 text-sm leading-relaxed text-muted sm:pr-12 sm:text-base sm:leading-relaxed">
+                {item.a}
+              </p>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<script>
+  function initFAQ() {
+    const section = document.getElementById("faq");
+    if (!section) return;
+
+    const items = section.querySelectorAll(".faq-item");
+
+    items.forEach((item) => {
+      const trigger = item.querySelector(".faq-trigger") as HTMLButtonElement | null;
+      const answer = item.querySelector(".faq-answer") as HTMLElement | null;
+      const vertical = item.querySelector(".faq-icon-vertical") as HTMLElement | null;
+
+      if (!trigger || !answer) return;
+
+      trigger.addEventListener("click", () => {
+        const isOpen = trigger.getAttribute("aria-expanded") === "true";
+
+        items.forEach((other) => {
+          const otherTrigger = other.querySelector(".faq-trigger") as HTMLButtonElement | null;
+          const otherAnswer = other.querySelector(".faq-answer") as HTMLElement | null;
+          const otherVertical = other.querySelector(".faq-icon-vertical") as HTMLElement | null;
+
+          if (otherTrigger && otherAnswer && other !== item) {
+            otherTrigger.setAttribute("aria-expanded", "false");
+            otherAnswer.style.maxHeight = "0";
+            if (otherVertical) otherVertical.style.transform = "rotate(0deg)";
+          }
+        });
+
+        if (isOpen) {
+          trigger.setAttribute("aria-expanded", "false");
+          answer.style.maxHeight = "0";
+          if (vertical) vertical.style.transform = "rotate(0deg)";
+        } else {
+          trigger.setAttribute("aria-expanded", "true");
+          answer.style.maxHeight = answer.scrollHeight + "px";
+          if (vertical) vertical.style.transform = "rotate(90deg)";
+        }
+      });
+    });
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+          }
+        });
+      },
+      { threshold: 0.1, rootMargin: "0px 0px -20px 0px" },
+    );
+
+    items.forEach((item) => observer.observe(item));
+  }
+
+  initFAQ();
+</script>
+
+<style is:inline>
+  .faq-item {
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.4s ease, transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+    transition-delay: calc(var(--faq-index, 0) * 0.05s);
+  }
+
+  .faq-item.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .faq-trigger {
+    cursor: pointer;
+    background: none;
+    border: none;
+    font-family: inherit;
+  }
+
+  .faq-icon-vertical {
+    transform: rotate(0deg);
+    transition: transform 0.3s ease;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .faq-item {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+  }
+</style>

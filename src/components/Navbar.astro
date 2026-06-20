@@ -1,0 +1,175 @@
+---
+import ThemeToggle from "./ThemeToggle.astro";
+---
+
+<nav
+  id="dynamic-island"
+  class="fixed left-1/2 top-4 z-50 -translate-x-1/2"
+  aria-label="Navegación principal"
+>
+  <div
+    class="island-pill flex items-center gap-0.5 rounded-full px-2 py-2 text-sm font-medium"
+  >
+    <a
+      href="#hero"
+      class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-xs font-bold text-white/75 transition-colors duration-200 hover:text-white"
+      aria-label="Inicio"
+      data-nav="hero"
+    >
+      E
+    </a>
+
+    <div class="mx-0.5 hidden h-5 w-px shrink-0 bg-white/[0.08] sm:block" aria-hidden="true"></div>
+
+    <div class="nav-links hidden items-center sm:flex">
+      <a href="#servicios" data-nav="servicios" class="nav-link rounded-full px-3 py-1.5 text-white/55 transition-colors duration-200 hover:text-white/90">Servicios</a>
+      <a href="#proyectos" data-nav="proyectos" class="nav-link rounded-full px-3 py-1.5 text-white/55 transition-colors duration-200 hover:text-white/90">Proyectos</a>
+      <a href="#tecnologias" data-nav="tecnologias" class="nav-link rounded-full px-3 py-1.5 text-white/55 transition-colors duration-200 hover:text-white/90">Tecnologías</a>
+      <a href="#sobre-mi" data-nav="sobre-mi" class="nav-link rounded-full px-3 py-1.5 text-white/55 transition-colors duration-200 hover:text-white/90">Sobre mí</a>
+      <a href="#contacto" data-nav="contacto" class="nav-link rounded-full px-3 py-1.5 text-white/55 transition-colors duration-200 hover:text-white/90">Contacto</a>
+    </div>
+
+    <div class="relative flex items-center">
+      <button
+        id="nav-more"
+        class="flex h-8 w-8 items-center justify-center rounded-full text-white/50 transition-colors duration-200 hover:bg-white/[0.08] hover:text-white/80 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-glow"
+        aria-label="Más secciones"
+        aria-expanded="false"
+        aria-haspopup="true"
+        type="button"
+      >
+        <svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor">
+          <circle cx="5" cy="12" r="2" />
+          <circle cx="12" cy="12" r="2" />
+          <circle cx="19" cy="12" r="2" />
+        </svg>
+      </button>
+
+      <div
+        id="nav-dropdown"
+        class="invisible absolute right-0 top-full mt-3 w-56 origin-top-right translate-y-2 rounded-2xl border border-white/[0.07] p-2 opacity-0 shadow-[0_16px_48px_rgba(0,0,0,0.4)] backdrop-blur-2xl transition-all duration-200"
+        style="background: oklch(0.15 0.010 275 / 0.90)"
+      >
+        <a href="#servicios" data-nav="servicios" class="nav-link flex items-center rounded-xl px-3 py-2.5 text-white/55 transition-colors duration-150 hover:bg-white/[0.08] hover:text-white/90 sm:hidden">Servicios</a>
+        <a href="#proyectos" data-nav="proyectos" class="nav-link flex items-center rounded-xl px-3 py-2.5 text-white/55 transition-colors duration-150 hover:bg-white/[0.08] hover:text-white/90 sm:hidden">Proyectos</a>
+        <a href="#tecnologias" data-nav="tecnologias" class="nav-link flex items-center rounded-xl px-3 py-2.5 text-white/55 transition-colors duration-150 hover:bg-white/[0.08] hover:text-white/90 sm:hidden">Tecnologías</a>
+        <a href="#sobre-mi" data-nav="sobre-mi" class="nav-link flex items-center rounded-xl px-3 py-2.5 text-white/55 transition-colors duration-150 hover:bg-white/[0.08] hover:text-white/90 sm:hidden">Sobre mí</a>
+        <a href="#contacto" data-nav="contacto" class="nav-link flex items-center rounded-xl px-3 py-2.5 text-white/55 transition-colors duration-150 hover:bg-white/[0.08] hover:text-white/90 sm:hidden">Contacto</a>
+        <div class="my-1.5 border-t border-white/[0.06] sm:hidden"></div>
+        <a href="#como-trabajo" data-nav="como-trabajo" class="nav-link flex items-center rounded-xl px-3 py-2.5 text-white/55 transition-colors duration-150 hover:bg-white/[0.08] hover:text-white/90">Cómo Trabajo</a>
+        <a href="#hosting" data-nav="hosting" class="nav-link flex items-center rounded-xl px-3 py-2.5 text-white/55 transition-colors duration-150 hover:bg-white/[0.08] hover:text-white/90">Hosting & DevOps</a>
+        <a href="#construyendo" data-nav="construyendo" class="nav-link flex items-center rounded-xl px-3 py-2.5 text-white/55 transition-colors duration-150 hover:bg-white/[0.08] hover:text-white/90">Actualmente Construyendo</a>
+        <a href="#faq" data-nav="faq" class="nav-link flex items-center rounded-xl px-3 py-2.5 text-white/55 transition-colors duration-150 hover:bg-white/[0.08] hover:text-white/90">FAQ</a>
+      </div>
+    </div>
+
+    <div class="mx-0.5 hidden h-5 w-px shrink-0 bg-white/[0.08] sm:block" aria-hidden="true"></div>
+
+    <ThemeToggle />
+  </div>
+</nav>
+
+<script>
+  function initNavbar() {
+    const nav = document.getElementById("dynamic-island");
+    const moreBtn = document.getElementById("nav-more");
+    const dropdown = document.getElementById("nav-dropdown");
+    if (!nav) return;
+
+    const links = nav.querySelectorAll<HTMLAnchorElement>("[data-nav]");
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) {
+            const id = entry.target.id;
+            links.forEach((l) => {
+              const isActive = l.dataset.nav === id;
+              l.classList.toggle("text-white", isActive);
+              l.classList.toggle("bg-white/[0.08]", isActive);
+              if (!isActive) {
+                l.classList.remove("bg-white/[0.08]");
+                l.classList.add("text-white/55");
+              }
+            });
+          }
+        }
+      },
+      { rootMargin: "-40% 0px -55% 0px" },
+    );
+
+    const sectionIds = [
+      "hero", "servicios", "proyectos", "como-trabajo", "hosting",
+      "tecnologias", "construyendo", "sobre-mi", "faq", "contacto",
+    ];
+
+    for (const id of sectionIds) {
+      const el = document.getElementById(id);
+      if (el) observer.observe(el);
+    }
+
+    function openDropdown() {
+      if (!dropdown || !moreBtn) return;
+      dropdown.classList.remove("invisible", "opacity-0", "translate-y-2");
+      dropdown.classList.add("opacity-100", "translate-y-0");
+      moreBtn.setAttribute("aria-expanded", "true");
+      moreBtn.classList.add("bg-white/[0.08]");
+    }
+
+    function closeDropdown() {
+      if (!dropdown || !moreBtn) return;
+      dropdown.classList.add("invisible", "opacity-0", "translate-y-2");
+      dropdown.classList.remove("opacity-100", "translate-y-0");
+      moreBtn.setAttribute("aria-expanded", "false");
+      moreBtn.classList.remove("bg-white/[0.08]");
+    }
+
+    if (moreBtn && dropdown) {
+      moreBtn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        const isOpen = moreBtn.getAttribute("aria-expanded") === "true";
+        isOpen ? closeDropdown() : openDropdown();
+      });
+
+      dropdown.addEventListener("click", (e) => {
+        const link = (e.target as HTMLElement).closest("a");
+        if (link) closeDropdown();
+      });
+
+      document.addEventListener("click", () => closeDropdown());
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") closeDropdown();
+      });
+    }
+  }
+
+  initNavbar();
+</script>
+
+<style is:inline>
+  .island-pill {
+    background: linear-gradient(
+      180deg,
+      oklch(0.16 0.012 275 / 0.80) 0%,
+      oklch(0.13 0.006 275 / 0.60) 100%
+    );
+    backdrop-filter: blur(40px) saturate(180%);
+    -webkit-backdrop-filter: blur(40px) saturate(180%);
+    box-shadow:
+      0 8px 40px oklch(0 0 0 / 0.35),
+      0 0 0 0.5px oklch(1 0 0 / 0.07) inset,
+      0 1px 0 oklch(1 0 0 / 0.04) inset;
+    will-change: transform;
+  }
+
+  .nav-link {
+    white-space: nowrap;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .island-pill {
+      backdrop-filter: blur(40px);
+      -webkit-backdrop-filter: blur(40px);
+    }
+  }
+</style>

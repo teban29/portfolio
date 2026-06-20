@@ -1,0 +1,273 @@
+---
+---
+
+<section
+  id="hero"
+  class="hero relative flex min-h-screen items-center justify-center overflow-hidden bg-surface-alt"
+>
+  <div class="hero-mesh pointer-events-none absolute inset-0 z-0">
+    <div class="mesh-blob mesh-blob--1"></div>
+    <div class="mesh-blob mesh-blob--2"></div>
+    <div class="mesh-blob mesh-blob--3"></div>
+    <div class="mesh-blob mesh-blob--4"></div>
+  </div>
+
+  <div
+    class="pointer-events-none absolute inset-0 z-[1]"
+    style="background: radial-gradient(ellipse at 50% 40%, transparent 40%, oklch(0.06 0.010 275 / 0.60) 100%)"
+  ></div>
+
+  <div
+    class="pointer-events-none absolute inset-0 z-[2] opacity-[0.035]"
+    style="background-image: url(&quot;data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E&quot;); background-repeat: repeat; background-size: 200px 200px;"
+  ></div>
+
+  <div
+    id="hero-content"
+    class="hero-content relative z-10 mx-auto flex max-w-3xl flex-col items-center px-6 text-center"
+  >
+    <div class="word-reveal mb-8 inline-flex flex-wrap items-center justify-center gap-x-3 gap-y-2 text-sm font-medium text-muted-on-dark">
+      <span class="inline-flex items-center gap-2 rounded-full border border-border-on-dark/30 bg-ink-on-dark/5 px-4 py-1.5 backdrop-blur-sm">
+        <span class="relative flex h-2 w-2">
+          <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent opacity-75"></span>
+          <span class="relative inline-flex h-2 w-2 rounded-full bg-accent"></span>
+        </span>
+        Disponible para proyectos
+      </span>
+      <span class="rounded-full border border-border-on-dark/20 bg-ink-on-dark/[0.03] px-4 py-1.5 backdrop-blur-sm">
+        Cali, Colombia
+      </span>
+      <span class="rounded-full border border-border-on-dark/20 bg-ink-on-dark/[0.03] px-4 py-1.5 backdrop-blur-sm">
+        2 años freelance
+      </span>
+    </div>
+
+    <h1
+      id="hero-heading"
+      class="mb-6 text-balance font-sans text-[clamp(3rem,8vw,6rem)] font-bold leading-[1.05] tracking-[-0.03em] text-ink-on-dark"
+    >
+      <span class="word-reveal block" style="--w: 0">Esteban</span>
+      <span class="word-reveal block" style="--w: 1">Cardona</span>
+    </h1>
+
+    <p
+      class="mb-10 max-w-xl text-balance text-[clamp(1rem,2.2vw,1.25rem)] leading-relaxed text-muted-on-dark"
+    >
+      <span class="word-reveal" style="--w: 2">Construyo</span>
+      <span class="word-reveal" style="--w: 3">experiencias</span>
+      <span class="word-reveal" style="--w: 4">digitales</span>
+      <span class="word-reveal" style="--w: 5">modernas</span>
+      <span class="word-reveal" style="--w: 6">que</span>
+      <span class="word-reveal" style="--w: 7">impulsan</span>
+      <span class="word-reveal" style="--w: 8">negocios.</span>
+    </p>
+
+    <div class="word-reveal flex flex-wrap items-center justify-center gap-4" style="--w: 9">
+      <a
+        href="#proyectos"
+        class="group inline-flex items-center gap-2 rounded-full bg-primary px-7 py-3 text-sm font-semibold text-white transition-all duration-300 hover:bg-primary-glow hover:shadow-[0_0_30px_oklch(0.500_0.175_275_/_0.35)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-glow"
+      >
+        Ver proyectos
+        <svg
+          class="h-4 w-4 transition-transform duration-300 group-hover:translate-y-0.5"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <line x1="12" y1="5" x2="12" y2="19" />
+          <polyline points="19 12 12 19 5 12" />
+        </svg>
+      </a>
+      <a
+        href="#contacto"
+        class="inline-flex items-center gap-2 rounded-full border border-border-on-dark/40 px-7 py-3 text-sm font-semibold text-ink-on-dark transition-all duration-300 hover:border-ink-on-dark/60 hover:bg-ink-on-dark/5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-glow"
+      >
+        Contáctame
+      </a>
+    </div>
+  </div>
+
+  <div
+    class="absolute bottom-10 left-1/2 z-10 -translate-x-1/2"
+  >
+    <a
+      href="#servicios"
+      class="flex flex-col items-center gap-2 text-xs font-medium text-muted-on-dark/60 transition-colors duration-300 hover:text-muted-on-dark"
+      aria-label="Ir a servicios"
+    >
+      <span>Scroll</span>
+      <svg
+        class="h-4 w-4 animate-bounce"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <line x1="12" y1="5" x2="12" y2="19" />
+        <polyline points="19 12 12 19 5 12" />
+      </svg>
+    </a>
+  </div>
+</section>
+
+<script>
+  function initHero3D() {
+    const content = document.getElementById("hero-content");
+    if (!content) return;
+
+    const prefersReducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
+    if (prefersReducedMotion) return;
+
+    const rotateStrength = 2.5;
+    const translateStrength = 4;
+
+    function handleMouse(e: MouseEvent) {
+      const rx = (e.clientY / window.innerHeight - 0.5) * -rotateStrength;
+      const ry = (e.clientX / window.innerWidth - 0.5) * rotateStrength;
+      const tx = (e.clientX / window.innerWidth - 0.5) * translateStrength;
+      const ty = (e.clientY / window.innerHeight - 0.5) * translateStrength;
+      content!.style.transform = `perspective(1000px) rotateX(${rx}deg) rotateY(${ry}deg) translate(${tx}px, ${ty}px)`;
+    }
+
+    function reset() {
+      content!.style.transform =
+        "perspective(1000px) rotateX(0deg) rotateY(0deg) translate(0px, 0px)";
+    }
+
+    document.addEventListener("mousemove", handleMouse, { passive: true });
+    document.addEventListener("mouseleave", reset);
+
+    return () => {
+      document.removeEventListener("mousemove", handleMouse);
+      document.removeEventListener("mouseleave", reset);
+    };
+  }
+
+  initHero3D();
+</script>
+
+<style is:inline>
+  .hero {
+    perspective: 1200px;
+  }
+
+  .hero-mesh {
+    filter: blur(0px);
+  }
+
+  .mesh-blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(90px);
+    will-change: transform;
+  }
+
+  .mesh-blob--1 {
+    width: 55%;
+    height: 55%;
+    background: oklch(0.520 0.180 275 / 0.30);
+    top: 5%;
+    left: 10%;
+    animation: blob1 15s ease-in-out infinite alternate;
+  }
+
+  .mesh-blob--2 {
+    width: 50%;
+    height: 50%;
+    background: oklch(0.400 0.170 275 / 0.38);
+    bottom: -5%;
+    right: 5%;
+    animation: blob2 17s ease-in-out infinite alternate;
+  }
+
+  .mesh-blob--3 {
+    width: 35%;
+    height: 40%;
+    background: oklch(0.560 0.190 20 / 0.14);
+    top: 45%;
+    left: 45%;
+    animation: blob3 19s ease-in-out infinite alternate;
+  }
+
+  .mesh-blob--4 {
+    width: 40%;
+    height: 35%;
+    background: oklch(0.460 0.175 275 / 0.22);
+    top: 55%;
+    left: -5%;
+    animation: blob4 21s ease-in-out infinite alternate;
+  }
+
+  @keyframes blob1 {
+    0%   { transform: translate(0, 0) scale(1); }
+    25%  { transform: translate(12%, 8%) scale(1.06); }
+    50%  { transform: translate(-4%, 14%) scale(0.93); }
+    75%  { transform: translate(8%, -2%) scale(1.10); }
+    100% { transform: translate(-2%, 4%) scale(0.97); }
+  }
+
+  @keyframes blob2 {
+    0%   { transform: translate(0, 0) scale(1); }
+    25%  { transform: translate(-10%, -6%) scale(1.08); }
+    50%  { transform: translate(5%, -12%) scale(0.91); }
+    75%  { transform: translate(-6%, 4%) scale(1.05); }
+    100% { transform: translate(3%, -2%) scale(0.96); }
+  }
+
+  @keyframes blob3 {
+    0%   { transform: translate(0, 0) scale(1); }
+    25%  { transform: translate(14%, -4%) scale(1.12); }
+    50%  { transform: translate(-8%, 8%) scale(0.90); }
+    75%  { transform: translate(4%, -10%) scale(1.07); }
+    100% { transform: translate(-4%, -2%) scale(0.95); }
+  }
+
+  @keyframes blob4 {
+    0%   { transform: translate(0, 0) scale(1); }
+    25%  { transform: translate(-12%, 6%) scale(1.04); }
+    50%  { transform: translate(8%, -8%) scale(0.94); }
+    75%  { transform: translate(-4%, -4%) scale(1.09); }
+    100% { transform: translate(4%, 6%) scale(0.98); }
+  }
+
+  #hero-content {
+    transition: transform 0.2s ease-out;
+  }
+
+  .word-reveal {
+    display: inline-block;
+    opacity: 0;
+    animation: wordIn 0.65s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    animation-delay: calc(0.15s + var(--w, 0) * 0.08s);
+  }
+
+  @keyframes wordIn {
+    from {
+      opacity: 0;
+      transform: translateY(0.5em);
+      filter: blur(6px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+      filter: blur(0);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .mesh-blob {
+      animation: none;
+    }
+    .word-reveal {
+      opacity: 1;
+      animation: none;
+    }
+  }
+</style>

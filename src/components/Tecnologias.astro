@@ -1,0 +1,181 @@
+<section
+  id="tecnologias"
+  class="relative overflow-hidden bg-bg py-24 sm:py-32"
+>
+  <div class="mx-auto max-w-6xl px-6">
+    <div class="mb-14 sm:mb-20">
+      <p class="mb-3 font-mono text-xs font-medium tracking-wide text-primary">
+        Tecnologías
+      </p>
+      <h2 class="text-balance font-sans text-[clamp(2rem,4vw,3rem)] font-bold leading-[1.12] tracking-[-0.02em] text-ink">
+        Lo que uso para<br />construir
+      </h2>
+      <p class="mt-4 max-w-md text-base leading-relaxed text-muted">
+        Herramientas modernas elegidas por una razón: resolver problemas reales, no por moda.
+      </p>
+    </div>
+
+    <div class="stack-layers space-y-0">
+      {
+        [
+          {
+            label: "Frontend",
+            desc: "Lo que el usuario ve y siente",
+            color: "primary",
+            border: "border-l-primary",
+            bg: "bg-surface",
+            techs: [
+              { name: "JavaScript", icon: "/icons/tech/javascript.svg" },
+              { name: "TypeScript", icon: "/icons/tech/typescritp.svg" },
+              { name: "React", icon: "/icons/tech/react.svg" },
+              { name: "Next.js", icon: "/icons/tech/nextjs.svg", invertDark: true },
+              { name: "Astro", icon: "/icons/tech/astro.svg" },
+              { name: "Tailwind CSS", icon: "/icons/tech/tailwindcss.svg" },
+            ],
+          },
+          {
+            label: "Backend",
+            desc: "Lo que hace que todo funcione",
+            color: "accent",
+            border: "border-l-accent",
+            bg: "bg-surface/50",
+            techs: [
+              { name: "Python", icon: "/icons/tech/python.svg" },
+              { name: "Django", icon: "/icons/tech/django.svg" },
+              { name: "PHP", icon: "/icons/tech/php-svgrepo-com.svg" },
+              { name: "Laravel", icon: "/icons/tech/laravel.svg" },
+              { name: "Go", icon: "/icons/tech/go.svg" },
+              { name: "Strapi", icon: "/icons/tech/strapi.svg" },
+            ],
+          },
+          {
+            label: "DevOps",
+            desc: "Lo que mantiene todo vivo",
+            color: "muted",
+            border: "border-l-muted",
+            bg: "bg-surface/25",
+            techs: [
+              { name: "Docker", icon: "/icons/tech/docker.svg" },
+              { name: "Linux", icon: "/icons/tech/linux.svg" },
+              { name: "Git", icon: "/icons/tech/git.svg" },
+              { name: "CI/CD", icon: null },
+              { name: "Nginx", icon: "/icons/tech/nginx.svg" },
+            ],
+          },
+        ].map((layer) => (
+          <div class={`stack-layer group relative border-l-2 ${layer.border} ${layer.bg} px-5 py-7 transition-all duration-300 hover:border-l-[3px] sm:px-8 sm:py-8`}>
+            <div class="flex flex-col gap-5 sm:flex-row sm:items-start sm:gap-10">
+              <div class="shrink-0 sm:w-36">
+                <h3 class="font-mono text-sm font-semibold tracking-wide text-ink">{layer.label}</h3>
+                <p class="mt-1 text-xs leading-relaxed text-muted">{layer.desc}</p>
+              </div>
+              <div class="min-w-0 flex-1">
+                <div class="flex flex-wrap gap-2">
+                  {layer.techs.map((tech) => (
+                    <span class="tech-pill group/pill inline-flex items-center gap-2 rounded-full border border-border/50 bg-bg px-3.5 py-2 font-mono text-xs font-medium leading-none text-ink/80 transition-all duration-300 hover:border-border hover:text-ink hover:shadow-sm">
+                      {tech.icon ? (
+                        <img
+                          src={tech.icon}
+                          alt=""
+                          class:list={[
+                            "tech-icon h-5 w-5 opacity-60 transition-opacity group-hover/pill:opacity-100",
+                            { "tech-icon-invert-dark": tech.invertDark },
+                          ]}
+                          loading="lazy"
+                        />
+                      ) : null}
+                      {tech.name}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+
+</section>
+
+<script>
+  function initReveal() {
+    const section = document.getElementById("tecnologias");
+    if (!section) return;
+
+    const layers = section.querySelectorAll(".stack-layer");
+    const pills = section.querySelectorAll(".tech-pill");
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+          }
+        });
+      },
+      { threshold: 0.15, rootMargin: "0px 0px -30px 0px" },
+    );
+
+    layers.forEach((layer, i) => {
+      layer.style.setProperty("--layer-index", String(i));
+      observer.observe(layer);
+    });
+
+    pills.forEach((pill, i) => {
+      pill.style.setProperty("--pill-index", String(i % 6));
+      observer.observe(pill);
+    });
+  }
+
+  initReveal();
+</script>
+
+<style is:inline>
+  .stack-layers {
+    border-radius: 1rem;
+    overflow: hidden;
+    border: 1px solid var(--border);
+  }
+
+  .stack-layer {
+    opacity: 0;
+    transform: translateX(-16px);
+    transition: opacity 0.5s ease, transform 0.5s cubic-bezier(0.22, 1, 0.36, 1), border-left-width 0.3s ease;
+    transition-delay: calc(var(--layer-index, 0) * 0.1s);
+  }
+
+  .stack-layer.is-visible {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  .stack-layer:not(:last-child) {
+    border-bottom: 1px solid var(--border);
+  }
+
+  .tech-pill {
+    opacity: 0;
+    transform: translateY(8px);
+    transition: opacity 0.4s ease, transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.3s, box-shadow 0.3s;
+    transition-delay: calc(0.05s + var(--pill-index, 0) * 0.04s);
+  }
+
+  .tech-pill.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  [data-theme="dark"] .tech-icon-invert-dark {
+    filter: brightness(0) invert(1);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .stack-layer,
+    .tech-pill {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+  }
+</style>

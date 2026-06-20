@@ -1,0 +1,125 @@
+<section
+  id="servicios"
+  class="relative bg-bg py-24 sm:py-32"
+>
+  <div class="mx-auto max-w-6xl px-6 lg:grid lg:grid-cols-[1fr_1.6fr] lg:gap-16">
+    <div class="mb-12 lg:mb-0">
+      <p class="mb-3 font-mono text-xs font-medium tracking-wide text-primary">
+        Servicios
+      </p>
+      <h2 class="text-balance font-sans text-[clamp(2rem,4vw,3rem)] font-bold leading-[1.12] tracking-[-0.02em] text-ink">
+        Lo que<br />construyo
+      </h2>
+      <p class="mt-6 max-w-xs text-base leading-relaxed text-muted">
+        Desde APIs robustas hasta interfaces pulidas. Cada proyecto con el stack correcto para el problema correcto.
+      </p>
+    </div>
+
+    <div class="space-y-0">
+      {
+        [
+          {
+            num: "01",
+            title: "Desarrollo Full-Stack",
+            desc: "Aplicaciones web completas, desde la base de datos hasta el último pixel. Arquitecturas pensadas para escalar, no para sobrevivir.",
+            tags: ["Python", "React", "Next.js", "Astro"],
+          },
+          {
+            num: "02",
+            title: "APIs y Backend",
+            desc: "APIs REST robustas, microservicios y sistemas de autenticación. Experiencia con Django, Laravel y Go para diferentes tipos de carga.",
+            tags: ["Django", "Laravel", "Go", "Strapi"],
+          },
+          {
+            num: "03",
+            title: "Frontend Moderno",
+            desc: "Interfaces rápidas, accesibles y con carácter. Animaciones con propósito, rendimiento real, experiencia de usuario que se siente.",
+            tags: ["React", "Next.js", "Astro", "TypeScript"],
+          },
+          {
+            num: "04",
+            title: "CMS & E-commerce",
+            desc: "Soluciones headless con Strapi. Paneles a medida, tiendas online, contenido dinámico sin depender de un monolito.",
+            tags: ["Strapi", "Laravel", "Django"],
+          },
+          {
+            num: "05",
+            title: "DevOps & Despliegue",
+            desc: "Dockerización, CI/CD, configuración de servidores. Me aseguro de que tu aplicación llegue a producción sin drama.",
+            tags: ["Docker", "CI/CD", "Linux"],
+          },
+        ].map((service) => (
+          <div class="service-item group border-b border-border py-6 first:pt-0 last:border-b-0">
+            <div class="flex gap-6">
+              <span class="shrink-0 font-mono text-sm font-medium tabular-nums leading-relaxed text-primary/60 transition-colors duration-300 group-hover:text-primary">
+                {service.num}
+              </span>
+              <div class="min-w-0">
+                <h3 class="font-sans text-lg font-semibold leading-snug text-ink">
+                  {service.title}
+                </h3>
+                <p class="mt-2 max-w-lg text-sm leading-relaxed text-muted">
+                  {service.desc}
+                </p>
+                <div class="mt-3 flex flex-wrap gap-1.5">
+                  {service.tags.map((tag) => (
+                    <span class="rounded-full border border-border px-2.5 py-0.5 font-mono text-[11px] font-medium leading-relaxed text-muted">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<script>
+  function initReveal() {
+  const section = document.getElementById("servicios");
+  if (!section) return;
+
+  const items = section.querySelectorAll(".service-item");
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+          }
+        });
+      },
+      { threshold: 0.15, rootMargin: "0px 0px -40px 0px" },
+    );
+
+    items.forEach((item) => {
+      observer.observe(item);
+    });
+  }
+
+  initReveal();
+</script>
+
+<style is:inline>
+  .service-item {
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .service-item.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .service-item {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+  }
+</style>

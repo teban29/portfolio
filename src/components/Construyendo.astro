@@ -1,0 +1,187 @@
+<section
+  id="construyendo"
+  class="relative overflow-hidden bg-surface py-24 sm:py-32"
+>
+  <div class="mx-auto max-w-6xl px-6">
+    <div class="mb-14 sm:mb-20">
+      <p class="mb-3 font-mono text-xs font-medium tracking-wide text-primary">
+        Actualmente Construyendo
+      </p>
+      <h2 class="text-balance font-sans text-[clamp(2rem,4vw,3rem)] font-bold leading-[1.12] tracking-[-0.02em] text-ink">
+        Lo que tengo<br />entre manos
+      </h2>
+      <p class="mt-4 max-w-md text-base leading-relaxed text-muted">
+        Proyectos activos ahora mismo. Así es como se ve el taller en tiempo real.
+      </p>
+    </div>
+
+    <div class="grid gap-5 sm:grid-cols-2 sm:gap-6">
+      {
+        [
+          {
+            title: "AqueTeVienes",
+            subtitle: "Plataforma e-commerce",
+            accent: "accent",
+            tasks: [
+              "Integrando pasarela de pagos",
+              "Dashboard de administración con métricas",
+              "Pruebas de integración backend-frontend",
+            ],
+            tags: ["Django REST", "Next.js", "TypeScript"],
+            progress: 65,
+          },
+        ].map((project) => (
+          <div class="build-card group relative flex flex-col rounded-2xl border border-border/60 bg-bg p-5 transition-all duration-300 hover:border-border hover:shadow-md sm:p-6">
+            <div class={`h-1 w-16 rounded-full bg-${project.accent} mb-5 transition-all duration-500 group-hover:w-24`}></div>
+
+            <div class="mb-3 flex items-center gap-2.5">
+              <span class="relative flex h-2.5 w-2.5">
+                <span class={`absolute inline-flex h-full w-full animate-ping rounded-full bg-${project.accent} opacity-60`}></span>
+                <span class={`relative inline-flex h-2.5 w-2.5 rounded-full bg-${project.accent}`}></span>
+              </span>
+              <span class="font-mono text-[11px] font-medium tracking-wide text-primary/70">En desarrollo</span>
+            </div>
+
+            <h3 class="font-sans text-xl font-semibold leading-snug text-ink">{project.title}</h3>
+            <p class="mt-1 font-mono text-xs text-muted">{project.subtitle}</p>
+
+            <div class="mt-5 flex-1 space-y-2.5">
+              <p class="font-mono text-[10px] font-semibold uppercase tracking-wider text-muted/50">Ahora</p>
+              {project.tasks.map((task: string) => (
+                <div class="flex items-start gap-2.5">
+                  <span class={`mt-[3px] font-mono text-xs text-${project.accent}`}>→</span>
+                  <span class="text-sm leading-relaxed text-muted">{task}</span>
+                </div>
+              ))}
+            </div>
+
+            <div class="mt-5">
+              <div class="mb-1 flex items-center justify-between">
+                <span class="font-mono text-[10px] text-muted/40">Progreso</span>
+                <span class={`font-mono text-[10px] font-medium text-${project.accent}`}>{project.progress}%</span>
+              </div>
+              <div class="h-1 w-full overflow-hidden rounded-full bg-border/40">
+                <div
+                  class={`build-progress h-full rounded-full bg-${project.accent} origin-left`}
+                  style={`--progress: ${project.progress}%`}
+                ></div>
+              </div>
+            </div>
+
+            <div class="mt-5 flex flex-wrap gap-1.5">
+              {project.tags.map((tag: string) => (
+                <span class="rounded-full border border-border/40 bg-surface px-2.5 py-0.5 font-mono text-[10px] font-medium leading-relaxed text-muted">{tag}</span>
+              ))}
+            </div>
+          </div>
+        ))
+      }
+    </div>
+
+    <div class="mt-5 sm:mt-6">
+      <div class="build-card-full group relative rounded-2xl border border-border/60 bg-bg p-5 transition-all duration-300 hover:border-border hover:shadow-md sm:p-6">
+        <div class="flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
+          <div class="flex items-center gap-4">
+            <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-primary/10 font-mono text-sm font-bold text-primary">
+              EC
+            </div>
+            <div>
+              <h3 class="font-sans text-base font-semibold leading-snug text-ink">Este portafolio</h3>
+              <p class="mt-0.5 font-mono text-xs text-muted">Diseñando y construyendo sección por sección</p>
+            </div>
+          </div>
+          <div class="flex items-center gap-3">
+            <span class="inline-flex items-center gap-1.5 rounded-full bg-primary/10 px-3 py-1 font-mono text-[10px] font-medium text-primary">
+              <span class="relative flex h-1.5 w-1.5">
+                <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary opacity-60"></span>
+                <span class="relative inline-flex h-1.5 w-1.5 rounded-full bg-primary"></span>
+              </span>
+              En vivo
+            </span>
+            <span class="font-mono text-[10px] text-muted/40">Astro · Tailwind</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  function initReveal() {
+    const section = document.getElementById("construyendo");
+    if (!section) return;
+
+    const cards = section.querySelectorAll(".build-card, .build-card-full");
+    const progressBars = section.querySelectorAll(".build-progress");
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+          }
+        });
+      },
+      { threshold: 0.1, rootMargin: "0px 0px -30px 0px" },
+    );
+
+    cards.forEach((card, i) => {
+      card.style.setProperty("--card-index", String(i));
+      observer.observe(card);
+    });
+
+    progressBars.forEach((bar) => {
+      const el = bar as HTMLElement;
+      const progress = el.style.getPropertyValue("--progress");
+      el.style.width = "0%";
+      const progObserver = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting) {
+            setTimeout(() => {
+              el.style.width = progress;
+            }, 300);
+          }
+        },
+        { threshold: 0.3 },
+      );
+      progObserver.observe(el);
+    });
+  }
+
+  initReveal();
+</script>
+
+<style is:inline>
+  .build-card,
+  .build-card-full {
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 0.5s ease, transform 0.5s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.3s, box-shadow 0.3s;
+    transition-delay: calc(var(--card-index, 0) * 0.08s);
+  }
+
+  .build-card.is-visible,
+  .build-card-full.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .build-progress {
+    width: 0%;
+    transition: width 1s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .build-card,
+    .build-card-full {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+
+    .build-progress {
+      transition: none;
+      width: var(--progress) !important;
+    }
+  }
+</style>
