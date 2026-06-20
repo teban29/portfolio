@@ -12,27 +12,27 @@ import ThemeToggle from "./ThemeToggle.astro";
   >
     <a
       href="#hero"
-      class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-xs font-bold text-white/75 transition-colors duration-200 hover:text-white"
+      class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-xs font-bold transition-colors duration-200"
       aria-label="Inicio"
       data-nav="hero"
     >
       E
     </a>
 
-    <div class="mx-0.5 hidden h-5 w-px shrink-0 bg-white/[0.08] sm:block" aria-hidden="true"></div>
+    <div class="mx-0.5 hidden h-5 w-px shrink-0 bg-[var(--glass-separator)] sm:block" aria-hidden="true"></div>
 
     <div class="nav-links hidden items-center sm:flex">
-      <a href="#servicios" data-nav="servicios" class="nav-link rounded-full px-3 py-1.5 text-white/55 transition-colors duration-200 hover:text-white/90">Servicios</a>
-      <a href="#proyectos" data-nav="proyectos" class="nav-link rounded-full px-3 py-1.5 text-white/55 transition-colors duration-200 hover:text-white/90">Proyectos</a>
-      <a href="#tecnologias" data-nav="tecnologias" class="nav-link rounded-full px-3 py-1.5 text-white/55 transition-colors duration-200 hover:text-white/90">Tecnologías</a>
-      <a href="#sobre-mi" data-nav="sobre-mi" class="nav-link rounded-full px-3 py-1.5 text-white/55 transition-colors duration-200 hover:text-white/90">Sobre mí</a>
-      <a href="#contacto" data-nav="contacto" class="nav-link rounded-full px-3 py-1.5 text-white/55 transition-colors duration-200 hover:text-white/90">Contacto</a>
+      <a href="#servicios" data-nav="servicios" class="nav-link rounded-full px-3 py-1.5 transition-colors duration-200">Servicios</a>
+      <a href="#proyectos" data-nav="proyectos" class="nav-link rounded-full px-3 py-1.5 transition-colors duration-200">Proyectos</a>
+      <a href="#tecnologias" data-nav="tecnologias" class="nav-link rounded-full px-3 py-1.5 transition-colors duration-200">Tecnologías</a>
+      <a href="#sobre-mi" data-nav="sobre-mi" class="nav-link rounded-full px-3 py-1.5 transition-colors duration-200">Sobre mí</a>
+      <a href="#contacto" data-nav="contacto" class="nav-link rounded-full px-3 py-1.5 transition-colors duration-200">Contacto</a>
     </div>
 
     <div class="relative flex items-center">
       <button
         id="nav-more"
-        class="flex h-8 w-8 items-center justify-center rounded-full text-white/50 transition-colors duration-200 hover:bg-white/[0.08] hover:text-white/80 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-glow"
+        class="flex h-8 w-8 items-center justify-center rounded-full transition-colors duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-glow"
         aria-label="Más secciones"
         aria-expanded="false"
         aria-haspopup="true"
@@ -47,23 +47,22 @@ import ThemeToggle from "./ThemeToggle.astro";
 
       <div
         id="nav-dropdown"
-        class="invisible absolute right-0 top-full mt-3 w-56 origin-top-right translate-y-2 rounded-2xl border border-white/[0.07] p-2 opacity-0 shadow-[0_16px_48px_rgba(0,0,0,0.4)] backdrop-blur-2xl transition-all duration-200"
-        style="background: oklch(0.15 0.010 275 / 0.90)"
+        class="invisible absolute right-0 top-full mt-3 w-56 origin-top-right translate-y-2 rounded-2xl border p-2 opacity-0 backdrop-blur-2xl transition-all duration-200"
       >
-        <a href="#servicios" data-nav="servicios" class="nav-link flex items-center rounded-xl px-3 py-2.5 text-white/55 transition-colors duration-150 hover:bg-white/[0.08] hover:text-white/90 sm:hidden">Servicios</a>
-        <a href="#proyectos" data-nav="proyectos" class="nav-link flex items-center rounded-xl px-3 py-2.5 text-white/55 transition-colors duration-150 hover:bg-white/[0.08] hover:text-white/90 sm:hidden">Proyectos</a>
-        <a href="#tecnologias" data-nav="tecnologias" class="nav-link flex items-center rounded-xl px-3 py-2.5 text-white/55 transition-colors duration-150 hover:bg-white/[0.08] hover:text-white/90 sm:hidden">Tecnologías</a>
-        <a href="#sobre-mi" data-nav="sobre-mi" class="nav-link flex items-center rounded-xl px-3 py-2.5 text-white/55 transition-colors duration-150 hover:bg-white/[0.08] hover:text-white/90 sm:hidden">Sobre mí</a>
-        <a href="#contacto" data-nav="contacto" class="nav-link flex items-center rounded-xl px-3 py-2.5 text-white/55 transition-colors duration-150 hover:bg-white/[0.08] hover:text-white/90 sm:hidden">Contacto</a>
-        <div class="my-1.5 border-t border-white/[0.06] sm:hidden"></div>
-        <a href="#como-trabajo" data-nav="como-trabajo" class="nav-link flex items-center rounded-xl px-3 py-2.5 text-white/55 transition-colors duration-150 hover:bg-white/[0.08] hover:text-white/90">Cómo Trabajo</a>
-        <a href="#hosting" data-nav="hosting" class="nav-link flex items-center rounded-xl px-3 py-2.5 text-white/55 transition-colors duration-150 hover:bg-white/[0.08] hover:text-white/90">Hosting & DevOps</a>
-        <a href="#construyendo" data-nav="construyendo" class="nav-link flex items-center rounded-xl px-3 py-2.5 text-white/55 transition-colors duration-150 hover:bg-white/[0.08] hover:text-white/90">Actualmente Construyendo</a>
-        <a href="#faq" data-nav="faq" class="nav-link flex items-center rounded-xl px-3 py-2.5 text-white/55 transition-colors duration-150 hover:bg-white/[0.08] hover:text-white/90">FAQ</a>
+        <a href="#servicios" data-nav="servicios" class="nav-link flex items-center rounded-xl px-3 py-2.5 transition-colors duration-150 sm:hidden">Servicios</a>
+        <a href="#proyectos" data-nav="proyectos" class="nav-link flex items-center rounded-xl px-3 py-2.5 transition-colors duration-150 sm:hidden">Proyectos</a>
+        <a href="#tecnologias" data-nav="tecnologias" class="nav-link flex items-center rounded-xl px-3 py-2.5 transition-colors duration-150 sm:hidden">Tecnologías</a>
+        <a href="#sobre-mi" data-nav="sobre-mi" class="nav-link flex items-center rounded-xl px-3 py-2.5 transition-colors duration-150 sm:hidden">Sobre mí</a>
+        <a href="#contacto" data-nav="contacto" class="nav-link flex items-center rounded-xl px-3 py-2.5 transition-colors duration-150 sm:hidden">Contacto</a>
+        <div class="my-1.5 border-t border-[var(--glass-dropdown-border)] sm:hidden"></div>
+        <a href="#como-trabajo" data-nav="como-trabajo" class="nav-link flex items-center rounded-xl px-3 py-2.5 transition-colors duration-150">Cómo Trabajo</a>
+        <a href="#hosting" data-nav="hosting" class="nav-link flex items-center rounded-xl px-3 py-2.5 transition-colors duration-150">Hosting & DevOps</a>
+        <a href="#construyendo" data-nav="construyendo" class="nav-link flex items-center rounded-xl px-3 py-2.5 transition-colors duration-150">Actualmente Construyendo</a>
+        <a href="#faq" data-nav="faq" class="nav-link flex items-center rounded-xl px-3 py-2.5 transition-colors duration-150">FAQ</a>
       </div>
     </div>
 
-    <div class="mx-0.5 hidden h-5 w-px shrink-0 bg-white/[0.08] sm:block" aria-hidden="true"></div>
+    <div class="mx-0.5 hidden h-5 w-px shrink-0 bg-[var(--glass-separator)] sm:block" aria-hidden="true"></div>
 
     <ThemeToggle />
   </div>
@@ -85,12 +84,7 @@ import ThemeToggle from "./ThemeToggle.astro";
             const id = entry.target.id;
             links.forEach((l) => {
               const isActive = l.dataset.nav === id;
-              l.classList.toggle("text-white", isActive);
-              l.classList.toggle("bg-white/[0.08]", isActive);
-              if (!isActive) {
-                l.classList.remove("bg-white/[0.08]");
-                l.classList.add("text-white/55");
-              }
+              l.classList.toggle("active-link", isActive);
             });
           }
         }
@@ -113,7 +107,7 @@ import ThemeToggle from "./ThemeToggle.astro";
       dropdown.classList.remove("invisible", "opacity-0", "translate-y-2");
       dropdown.classList.add("opacity-100", "translate-y-0");
       moreBtn.setAttribute("aria-expanded", "true");
-      moreBtn.classList.add("bg-white/[0.08]");
+      moreBtn.classList.add("bg-[var(--glass-separator)]");
     }
 
     function closeDropdown() {
@@ -121,7 +115,7 @@ import ThemeToggle from "./ThemeToggle.astro";
       dropdown.classList.add("invisible", "opacity-0", "translate-y-2");
       dropdown.classList.remove("opacity-100", "translate-y-0");
       moreBtn.setAttribute("aria-expanded", "false");
-      moreBtn.classList.remove("bg-white/[0.08]");
+      moreBtn.classList.remove("bg-[var(--glass-separator)]");
     }
 
     if (moreBtn && dropdown) {
@@ -148,22 +142,49 @@ import ThemeToggle from "./ThemeToggle.astro";
 
 <style is:inline>
   .island-pill {
-    background: linear-gradient(
-      180deg,
-      oklch(0.16 0.012 275 / 0.80) 0%,
-      oklch(0.13 0.006 275 / 0.60) 100%
-    );
+    background: var(--glass-bg);
     backdrop-filter: blur(40px) saturate(180%);
     -webkit-backdrop-filter: blur(40px) saturate(180%);
-    box-shadow:
-      0 8px 40px oklch(0 0 0 / 0.35),
-      0 0 0 0.5px oklch(1 0 0 / 0.07) inset,
-      0 1px 0 oklch(1 0 0 / 0.04) inset;
+    box-shadow: var(--glass-shadow);
     will-change: transform;
+    color: var(--glass-text);
+  }
+
+  .island-pill a,
+  .island-pill button:not(#theme-toggle) {
+    color: var(--glass-text-muted);
+    transition: color 0.2s, background 0.2s;
+  }
+
+  .island-pill a:hover,
+  .island-pill button:not(#theme-toggle):hover {
+    color: var(--glass-text);
+    background: var(--glass-hover-bg);
+  }
+
+  .island-pill .nav-link.active-link,
+  .island-pill [data-nav].active-link {
+    color: var(--glass-text);
+    background: var(--glass-hover-bg);
   }
 
   .nav-link {
     white-space: nowrap;
+  }
+
+  #nav-dropdown {
+    background: var(--glass-dropdown-bg);
+    border-color: var(--glass-dropdown-border);
+    box-shadow: var(--glass-dropdown-shadow);
+  }
+
+  #nav-dropdown a {
+    color: var(--glass-text-muted);
+  }
+
+  #nav-dropdown a:hover {
+    color: var(--glass-text);
+    background: var(--glass-dropdown-hover-bg);
   }
 
   @media (prefers-reduced-motion: reduce) {
