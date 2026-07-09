@@ -21,25 +21,25 @@
           {
             title: "AqueTeVienes",
             subtitle: "Plataforma e-commerce",
-            accent: "accent",
+            accent: "oklch(0.696 0.170 148)",
             tasks: [
-              "Integrando pasarela de pagos",
-              "Dashboard de administración con métricas",
-              "Pruebas de integración backend-frontend",
+              "Pasarela de pagos integrada y operativa",
+              "Dashboard de administración con métricas en vivo",
+              "En producción — completamente funcional",
             ],
             tags: ["Django REST", "Next.js", "TypeScript"],
-            progress: 65,
+            progress: 100,
           },
         ].map((project) => (
           <div class="build-card group relative flex flex-col rounded-2xl border border-border/60 bg-bg p-5 transition-all duration-300 hover:border-border hover:shadow-md sm:p-6">
-            <div class={`h-1 w-16 rounded-full bg-${project.accent} mb-5 transition-all duration-500 group-hover:w-24`}></div>
+            <div class="h-1 w-16 rounded-full mb-5 transition-all duration-500 group-hover:w-24" style={`background-color: ${project.accent}`}></div>
 
             <div class="mb-3 flex items-center gap-2.5">
               <span class="relative flex h-2.5 w-2.5">
-                <span class={`absolute inline-flex h-full w-full animate-ping rounded-full bg-${project.accent} opacity-60`}></span>
-                <span class={`relative inline-flex h-2.5 w-2.5 rounded-full bg-${project.accent}`}></span>
+                <span class="absolute inline-flex h-full w-full animate-ping rounded-full opacity-60" style={`background-color: ${project.accent}`}></span>
+                <span class="relative inline-flex h-2.5 w-2.5 rounded-full" style={`background-color: ${project.accent}`}></span>
               </span>
-              <span class="font-mono text-[11px] font-medium tracking-wide text-primary/70">En desarrollo</span>
+              <span class="font-mono text-[11px] font-medium tracking-wide text-primary/70">En producción</span>
             </div>
 
             <h3 class="font-sans text-xl font-semibold leading-snug text-ink">{project.title}</h3>
@@ -49,7 +49,7 @@
               <p class="font-mono text-[10px] font-semibold uppercase tracking-wider text-muted/50">Ahora</p>
               {project.tasks.map((task: string) => (
                 <div class="flex items-start gap-2.5">
-                  <span class={`mt-[3px] font-mono text-xs text-${project.accent}`}>→</span>
+                  <span class="mt-[3px] font-mono text-xs" style={`color: ${project.accent}`}>→</span>
                   <span class="text-sm leading-relaxed text-muted">{task}</span>
                 </div>
               ))}
@@ -58,12 +58,12 @@
             <div class="mt-5">
               <div class="mb-1 flex items-center justify-between">
                 <span class="font-mono text-[10px] text-muted/40">Progreso</span>
-                <span class={`font-mono text-[10px] font-medium text-${project.accent}`}>{project.progress}%</span>
+                <span class="font-mono text-[10px] font-medium" style={`color: ${project.accent}`}>{project.progress}%</span>
               </div>
               <div class="h-1 w-full overflow-hidden rounded-full bg-border/40">
                 <div
-                  class={`build-progress h-full rounded-full bg-${project.accent} origin-left`}
-                  style={`--progress: ${project.progress}%`}
+                  class="build-progress h-full rounded-full origin-left"
+                  style={`background-color: ${project.accent}; --progress: ${project.progress}%`}
                 ></div>
               </div>
             </div>
@@ -126,8 +126,9 @@
     );
 
     cards.forEach((card, i) => {
-      card.style.setProperty("--card-index", String(i));
-      observer.observe(card);
+      const el = card as HTMLElement;
+      el.style.setProperty("--card-index", String(i));
+      observer.observe(el);
     });
 
     progressBars.forEach((bar) => {
