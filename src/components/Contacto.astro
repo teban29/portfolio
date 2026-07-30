@@ -3,7 +3,7 @@
 
 <section
   id="contacto"
-  class="relative overflow-hidden bg-surface py-24 sm:py-32"
+  class="relative overflow-hidden bg-surface py-28 sm:py-36"
 >
   <div class="mx-auto max-w-6xl px-6">
     <div class="mb-14 sm:mb-20">
@@ -44,7 +44,7 @@
               class="group flex items-center gap-4 rounded-2xl border border-border bg-bg p-4 transition-all duration-200 hover:border-primary/30 hover:shadow-sm"
             >
               <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary">
-                <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
                   <rect width="20" height="16" x="2" y="4" rx="2"/>
                   <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
                 </svg>
@@ -62,7 +62,7 @@
               class="group flex items-center gap-4 rounded-2xl border border-border bg-bg p-4 transition-all duration-200 hover:border-primary/30 hover:shadow-sm"
             >
               <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary">
-                <svg class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor">
+                <svg class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false">
                   <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
                 </svg>
               </div>
@@ -74,7 +74,7 @@
 
             <div class="flex items-center gap-4 rounded-2xl border border-border bg-bg p-4">
               <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary">
-                <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
                   <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/>
                   <circle cx="12" cy="10" r="3"/>
                 </svg>
@@ -95,6 +95,13 @@
           class="flex w-full flex-col rounded-2xl border border-border bg-bg p-6 sm:p-8"
           novalidate
         >
+          <div id="form-success" class="mb-6 hidden rounded-xl border border-green-500/20 bg-green-500/10 p-4 text-sm font-medium text-green-600" role="status" aria-live="polite">
+            Mensaje enviado correctamente. Te responderé en menos de 24 horas.
+          </div>
+
+          <div id="form-general-error" class="mb-6 hidden rounded-xl border border-red-500/20 bg-red-500/10 p-4 text-sm font-medium text-red-500" role="alert" aria-live="assertive">
+          </div>
+
           <div class="mb-6 grid gap-6 sm:grid-cols-2 shrink-0">
             <div>
               <label for="nombre" class="mb-2 block text-sm font-medium text-ink">
@@ -105,9 +112,13 @@
                 id="nombre"
                 name="nombre"
                 required
+                minlength="2"
+                maxlength="100"
+                aria-describedby="nombre-error"
                 placeholder="Tu nombre"
-                class="w-full rounded-xl border border-border bg-surface px-4 py-3 text-sm text-ink placeholder:text-muted outline-none transition-colors focus:border-primary focus:ring-1 focus:ring-primary/20"
+                class="field-input w-full rounded-xl border border-border bg-surface px-4 py-3 text-sm text-ink placeholder:text-muted outline-none transition-colors focus:border-primary focus:ring-1 focus:ring-primary/20"
               />
+              <p id="nombre-error" class="mt-1.5 hidden text-xs text-red-500" aria-live="polite"></p>
             </div>
             <div>
               <label for="email" class="mb-2 block text-sm font-medium text-ink">
@@ -118,9 +129,12 @@
                 id="email"
                 name="email"
                 required
+                maxlength="254"
+                aria-describedby="email-error"
                 placeholder="tu@email.com"
-                class="w-full rounded-xl border border-border bg-surface px-4 py-3 text-sm text-ink placeholder:text-muted outline-none transition-colors focus:border-primary focus:ring-1 focus:ring-primary/20"
+                class="field-input w-full rounded-xl border border-border bg-surface px-4 py-3 text-sm text-ink placeholder:text-muted outline-none transition-colors focus:border-primary focus:ring-1 focus:ring-primary/20"
               />
+              <p id="email-error" class="mt-1.5 hidden text-xs text-red-500" aria-live="polite"></p>
             </div>
           </div>
 
@@ -132,24 +146,27 @@
               id="mensaje"
               name="mensaje"
               required
+              minlength="10"
+              maxlength="2000"
+              aria-describedby="mensaje-error"
               placeholder="Cuéntame sobre tu proyecto, tus objetivos y tu timeline..."
-              class="w-full flex-1 resize-none rounded-xl border border-border bg-surface px-4 py-3 text-sm text-ink placeholder:text-muted outline-none transition-colors focus:border-primary focus:ring-1 focus:ring-primary/20"
+              class="field-input w-full flex-1 resize-none rounded-xl border border-border bg-surface px-4 py-3 text-sm text-ink placeholder:text-muted outline-none transition-colors focus:border-primary focus:ring-1 focus:ring-primary/20"
             ></textarea>
+            <p id="mensaje-error" class="mt-1.5 hidden text-xs text-red-500" aria-live="polite"></p>
           </div>
 
-          <div class="flex shrink-0 items-center justify-between gap-4">
-            <p id="form-status" class="text-sm font-medium" aria-live="polite"></p>
+          <div class="flex shrink-0 items-center justify-end gap-4">
             <button
               type="submit"
               id="submit-btn"
-              class="inline-flex items-center gap-2 rounded-full bg-primary px-7 py-3 text-sm font-semibold text-white transition-all duration-300 hover:bg-primary-glow hover:shadow-[0_0_30px_oklch(0.500_0.175_275_/_0.35)] disabled:opacity-50 disabled:cursor-not-allowed"
+              class="inline-flex items-center gap-2 rounded-full bg-primary px-7 py-3 text-sm font-semibold text-white transition-all duration-300 hover:bg-primary-glow hover:shadow-primary-shadow disabled:opacity-50 disabled:cursor-not-allowed"
             >
               <span id="btn-text">Enviar mensaje</span>
-              <svg id="btn-icon" class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <svg id="btn-icon" class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
                 <line x1="22" y1="2" x2="11" y2="13"/>
                 <polygon points="22 2 15 22 11 13 2 9 22 2"/>
               </svg>
-              <svg id="btn-spinner" class="hidden h-4 w-4 animate-spin" viewBox="0 0 24 24" fill="none">
+              <svg id="btn-spinner" class="hidden h-4 w-4 animate-spin" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false">
                 <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
                 <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
               </svg>
@@ -164,40 +181,126 @@
 <script>
   function initContactForm() {
     const form = document.getElementById("contact-form") as HTMLFormElement | null;
-    const status = document.getElementById("form-status");
     const submitBtn = document.getElementById("submit-btn") as HTMLButtonElement | null;
     const btnText = document.getElementById("btn-text");
     const btnIcon = document.getElementById("btn-icon");
     const btnSpinner = document.getElementById("btn-spinner");
+    const successBanner = document.getElementById("form-success");
+    const generalError = document.getElementById("form-general-error");
 
-    if (!form || !status || !submitBtn || !btnText || !btnIcon || !btnSpinner) return;
+    if (!form || !submitBtn || !btnText || !btnIcon || !btnSpinner) return;
+
+    const fields = ["nombre", "email", "mensaje"] as const;
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    function getFieldElements(name: string) {
+      return {
+        input: document.getElementById(name) as HTMLInputElement | HTMLTextAreaElement | null,
+        error: document.getElementById(`${name}-error`),
+      };
+    }
+
+    function showFieldError(name: string, message: string) {
+      const { input, error } = getFieldElements(name);
+      if (!input || !error) return;
+      input.classList.add("border-red-500", "focus:border-red-500", "focus:ring-red-500/20");
+      input.classList.remove("focus:border-primary", "focus:ring-primary/20");
+      error.textContent = message;
+      error.classList.remove("hidden");
+      input.setAttribute("aria-invalid", "true");
+    }
+
+    function clearFieldError(name: string) {
+      const { input, error } = getFieldElements(name);
+      if (!input || !error) return;
+      input.classList.remove("border-red-500", "focus:border-red-500", "focus:ring-red-500/20");
+      input.classList.add("focus:border-primary", "focus:ring-primary/20");
+      error.textContent = "";
+      error.classList.add("hidden");
+      input.removeAttribute("aria-invalid");
+    }
+
+    function validateField(name: string) {
+      const { input } = getFieldElements(name);
+      if (!input) return false;
+      const value = input.value.trim();
+      clearFieldError(name);
+
+      if (!value) {
+        showFieldError(name, "Este campo es obligatorio.");
+        return false;
+      }
+      if (name === "nombre" && value.length < 2) {
+        showFieldError(name, "El nombre debe tener al menos 2 caracteres.");
+        return false;
+      }
+      if (name === "email" && !emailRegex.test(value)) {
+        showFieldError(name, "El correo electrónico no es válido.");
+        return false;
+      }
+      if (name === "mensaje" && value.length < 10) {
+        showFieldError(name, "El mensaje debe tener al menos 10 caracteres.");
+        return false;
+      }
+      return true;
+    }
+
+    function clearGeneralError() {
+      if (!generalError) return;
+      generalError.textContent = "";
+      generalError.classList.add("hidden");
+    }
+
+    function showGeneralError(message: string) {
+      if (!generalError) return;
+      generalError.textContent = message;
+      generalError.classList.remove("hidden");
+      if (successBanner) successBanner.classList.add("hidden");
+      generalError.scrollIntoView({ behavior: "smooth", block: "nearest" });
+    }
+
+    function showSuccess() {
+      if (!successBanner) return;
+      successBanner.classList.remove("hidden");
+      if (generalError) generalError.classList.add("hidden");
+      successBanner.scrollIntoView({ behavior: "smooth", block: "nearest" });
+    }
+
+    fields.forEach((name) => {
+      const { input } = getFieldElements(name);
+      if (!input) return;
+      input.addEventListener("blur", () => validateField(name));
+      input.addEventListener("input", () => {
+        if (input.getAttribute("aria-invalid") === "true") {
+          validateField(name);
+        }
+      });
+    });
 
     form.addEventListener("submit", async (e) => {
       e.preventDefault();
+      clearGeneralError();
+      if (successBanner) successBanner.classList.add("hidden");
+
+      const isValid = fields.every((name) => validateField(name));
+      if (!isValid) {
+        const firstInvalid = fields.find((name) => !validateField(name));
+        if (firstInvalid) {
+          const { input } = getFieldElements(firstInvalid);
+          input?.focus();
+        }
+        return;
+      }
 
       const formData = new FormData(form);
       const nombre = String(formData.get("nombre") || "").trim();
       const email = String(formData.get("email") || "").trim();
       const mensaje = String(formData.get("mensaje") || "").trim();
 
-      if (!nombre || !email || !mensaje) {
-        status.textContent = "Todos los campos son obligatorios.";
-        status.className = "text-sm font-medium text-red-500";
-        return;
-      }
-
-      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      if (!emailRegex.test(email)) {
-        status.textContent = "El correo electrónico no es válido.";
-        status.className = "text-sm font-medium text-red-500";
-        return;
-      }
-
       submitBtn.disabled = true;
       btnText.textContent = "Enviando...";
       btnIcon.classList.add("hidden");
       btnSpinner.classList.remove("hidden");
-      status.textContent = "";
 
       try {
         const response = await fetch("/api/contact", {
@@ -206,19 +309,22 @@
           body: JSON.stringify({ nombre, email, mensaje }),
         });
 
-        const result = await response.json();
+        let result: { error?: string } = {};
+        try {
+          result = await response.json();
+        } catch {
+          result = { error: "Respuesta inesperada del servidor." };
+        }
 
         if (response.ok) {
-          status.textContent = "Mensaje enviado correctamente. Te responderé pronto.";
-          status.className = "text-sm font-medium text-green-500";
+          showSuccess();
           form.reset();
+          fields.forEach((name) => clearFieldError(name));
         } else {
-          status.textContent = result.error || "Error al enviar. Intenta de nuevo.";
-          status.className = "text-sm font-medium text-red-500";
+          showGeneralError(result.error || "Error al enviar. Intenta de nuevo.");
         }
       } catch {
-        status.textContent = "Error de conexión. Intenta de nuevo.";
-        status.className = "text-sm font-medium text-red-500";
+        showGeneralError("Error de conexión. Intenta de nuevo.");
       } finally {
         submitBtn.disabled = false;
         btnText.textContent = "Enviar mensaje";

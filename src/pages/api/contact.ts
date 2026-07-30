@@ -5,6 +5,15 @@ export const prerender = false;
 
 const apiKey = import.meta.env.RESEND_API_KEY;
 
+function escapeHtml(s: string): string {
+  return s
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");
+}
+
 export const POST: APIRoute = async ({ request }) => {
   try {
     const body = await request.json();
@@ -18,9 +27,16 @@ export const POST: APIRoute = async ({ request }) => {
     }
 
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(email)) {
+    if (!emailRegex.test(email) || email.length > 254) {
       return new Response(
         JSON.stringify({ error: "El correo electrónico no es válido" }),
+        { status: 400, headers: { "Content-Type": "application/json" } }
+      );
+    }
+
+    if (nombre.length > 100 || mensaje.length > 2000) {
+      return new Response(
+        JSON.stringify({ error: "Uno o más campos exceden el límite permitido" }),
         { status: 400, headers: { "Content-Type": "application/json" } }
       );
     }
@@ -39,16 +55,16 @@ export const POST: APIRoute = async ({ request }) => {
       to: ["ecardonagonzalez1029@gmail.com"],
       subject: `Nuevo mensaje de ${nombre} — Portafolio`,
       html: `
-        <div style="font-family: system-ui, sans-serif; max-width: 600px; margin: 0 auto; padding: 24px; color: #1a1a1a;">
-          <h2 style="color: #4f46e5; margin-bottom: 16px;">Nuevo mensaje desde el portafolio</h2>
-          <div style="background: #f5f5f5; padding: 16px; border-radius: 8px; margin-bottom: 16px;">
-            <p style="margin: 0 0 8px 0;"><strong>Nombre:</strong> ${nombre}</p>
-            <p style="margin: 0 0 8px 0;"><strong>Email:</strong> ${email}</p>
+        <div style="font-family: system-ui, sans-serif; max-width: 600px; margin: 0 auto; padding: 24px; color: #202124; background: #ffffff;">
+          <h2 style="color: #5f6368; margin-bottom: 16px;">Nuevo mensaje desde el portafolio</h2>
+          <div style="background: #f8f9fa; padding: 16px; border-radius: 12px; margin-bottom: 16px;">
+            <p style="margin: 0 0 8px 0;"><strong>Nombre:</strong> ${escapeHtml(nombre)}</p>
+            <p style="margin: 0 0 8px 0;"><strong>Email:</strong> ${escapeHtml(email)}</p>
           </div>
-          <div style="background: #fafafa; padding: 16px; border-radius: 8px; border-left: 3px solid #4f46e5;">
-            <p style="margin: 0; white-space: pre-wrap;">${mensaje}</p>
+          <div style="background: #f8f9fa; padding: 16px; border-radius: 12px;">
+            <p style="margin: 0; white-space: pre-wrap;">${escapeHtml(mensaje)}</p>
           </div>
-          <p style="margin-top: 24px; font-size: 12px; color: #666;">
+          <p style="margin-top: 24px; font-size: 12px; color: #80868b;">
             Enviado desde ecardonagonzalez1029@gmail.com
           </p>
         </div>

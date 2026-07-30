@@ -11,6 +11,8 @@
   --color-ink-on-dark: var(--ink-on-dark);
   --color-primary: var(--primary);
   --color-primary-glow: var(--primary-glow);
+  --color-primary-600: var(--primary-600);
+  --color-primary-shadow: var(--primary-shadow);
   --color-accent: var(--accent);
   --color-muted: var(--muted);
   --color-muted-on-dark: var(--muted-on-dark);
@@ -25,9 +27,11 @@
   --ink: oklch(0.115 0.005 275);
   --ink-on-dark: oklch(0.940 0.003 0);
   --primary: oklch(0.380 0.160 275);
+  --primary-600: oklch(0.330 0.145 275);
   --primary-glow: oklch(0.500 0.175 275);
+  --primary-shadow: 0 0 30px oklch(0.500 0.175 275 / 0.35);
   --accent: oklch(0.540 0.185 20);
-  --muted: oklch(0.520 0.006 275);
+  --muted: oklch(0.350 0.008 275);
   --muted-on-dark: oklch(0.620 0.005 275);
   --border: oklch(0.880 0.005 275);
   --border-on-dark: oklch(0.240 0.008 275);
@@ -72,7 +76,9 @@
   --ink: oklch(0.920 0.002 0);
   --ink-on-dark: oklch(0.940 0.003 0);
   --primary: oklch(0.600 0.175 275);
+  --primary-600: oklch(0.540 0.155 275);
   --primary-glow: oklch(0.660 0.185 275);
+  --primary-shadow: 0 0 30px oklch(0.660 0.185 275 / 0.35);
   --accent: oklch(0.640 0.175 20);
   --muted: oklch(0.550 0.005 275);
   --muted-on-dark: oklch(0.600 0.005 275);
@@ -122,6 +128,7 @@ html {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   scroll-behavior: smooth;
+  text-rendering: optimizeLegibility;
 }
 
 body {
@@ -131,6 +138,7 @@ body {
   color: var(--ink);
   line-height: 1.6;
   transition: background-color 0.3s ease, color 0.3s ease;
+  min-height: 100vh;
 }
 
 ::selection {
@@ -139,6 +147,9 @@ body {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  body {
+    transition: none;
+  }
   *,
   *::before,
   *::after {

@@ -12,7 +12,7 @@ import ThemeToggle from "./ThemeToggle.astro";
   >
     <a
       href="#hero"
-      class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-xs font-bold transition-colors duration-200"
+      class="flex h-11 w-11 shrink-0 items-center justify-center rounded-full text-xs font-bold transition-colors duration-200 sm:h-8 sm:w-8"
       aria-label="Inicio"
       data-nav="hero"
     >
@@ -22,23 +22,23 @@ import ThemeToggle from "./ThemeToggle.astro";
     <div class="mx-0.5 hidden h-5 w-px shrink-0 bg-[var(--glass-separator)] sm:block" aria-hidden="true"></div>
 
     <div class="nav-links hidden items-center sm:flex">
-      <a href="#servicios" data-nav="servicios" class="nav-link rounded-full px-3 py-1.5 transition-colors duration-200">Servicios</a>
-      <a href="#proyectos" data-nav="proyectos" class="nav-link rounded-full px-3 py-1.5 transition-colors duration-200">Proyectos</a>
-      <a href="#tecnologias" data-nav="tecnologias" class="nav-link rounded-full px-3 py-1.5 transition-colors duration-200">Tecnologías</a>
-      <a href="#sobre-mi" data-nav="sobre-mi" class="nav-link rounded-full px-3 py-1.5 transition-colors duration-200">Sobre mí</a>
-      <a href="#contacto" data-nav="contacto" class="nav-link rounded-full px-3 py-1.5 transition-colors duration-200">Contacto</a>
+      <a href="#servicios" data-nav="servicios" class="nav-link rounded-full px-3 py-2.5 sm:py-1.5 transition-colors duration-200">Servicios</a>
+      <a href="#proyectos" data-nav="proyectos" class="nav-link rounded-full px-3 py-2.5 sm:py-1.5 transition-colors duration-200">Proyectos</a>
+      <a href="#tecnologias" data-nav="tecnologias" class="nav-link rounded-full px-3 py-2.5 sm:py-1.5 transition-colors duration-200">Tecnologías</a>
+      <a href="#sobre-mi" data-nav="sobre-mi" class="nav-link rounded-full px-3 py-2.5 sm:py-1.5 transition-colors duration-200">Sobre mí</a>
+      <a href="#contacto" data-nav="contacto" class="nav-link rounded-full px-3 py-2.5 sm:py-1.5 transition-colors duration-200">Contacto</a>
     </div>
 
     <div class="relative flex items-center">
       <button
         id="nav-more"
-        class="flex h-8 w-8 items-center justify-center rounded-full transition-colors duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-glow"
+        class="flex h-11 w-11 items-center justify-center rounded-full transition-colors duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-glow sm:h-8 sm:w-8"
         aria-label="Más secciones"
         aria-expanded="false"
         aria-haspopup="true"
         type="button"
       >
-        <svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor">
+        <svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false">
           <circle cx="5" cy="12" r="2" />
           <circle cx="12" cy="12" r="2" />
           <circle cx="19" cy="12" r="2" />
@@ -49,16 +49,16 @@ import ThemeToggle from "./ThemeToggle.astro";
         id="nav-dropdown"
         class="invisible absolute right-0 top-full mt-3 w-56 origin-top-right translate-y-2 rounded-2xl border p-2 opacity-0 backdrop-blur-2xl transition-all duration-200"
       >
-        <a href="#servicios" data-nav="servicios" class="nav-link flex items-center rounded-xl px-3 py-2.5 transition-colors duration-150 sm:hidden">Servicios</a>
-        <a href="#proyectos" data-nav="proyectos" class="nav-link flex items-center rounded-xl px-3 py-2.5 transition-colors duration-150 sm:hidden">Proyectos</a>
-        <a href="#tecnologias" data-nav="tecnologias" class="nav-link flex items-center rounded-xl px-3 py-2.5 transition-colors duration-150 sm:hidden">Tecnologías</a>
-        <a href="#sobre-mi" data-nav="sobre-mi" class="nav-link flex items-center rounded-xl px-3 py-2.5 transition-colors duration-150 sm:hidden">Sobre mí</a>
-        <a href="#contacto" data-nav="contacto" class="nav-link flex items-center rounded-xl px-3 py-2.5 transition-colors duration-150 sm:hidden">Contacto</a>
+        <a href="#servicios" data-nav="servicios" class="nav-link flex items-center rounded-xl px-3 py-3 transition-colors duration-150 sm:hidden">Servicios</a>
+        <a href="#proyectos" data-nav="proyectos" class="nav-link flex items-center rounded-xl px-3 py-3 transition-colors duration-150 sm:hidden">Proyectos</a>
+        <a href="#tecnologias" data-nav="tecnologias" class="nav-link flex items-center rounded-xl px-3 py-3 transition-colors duration-150 sm:hidden">Tecnologías</a>
+        <a href="#sobre-mi" data-nav="sobre-mi" class="nav-link flex items-center rounded-xl px-3 py-3 transition-colors duration-150 sm:hidden">Sobre mí</a>
+        <a href="#contacto" data-nav="contacto" class="nav-link flex items-center rounded-xl px-3 py-3 transition-colors duration-150 sm:hidden">Contacto</a>
         <div class="my-1.5 border-t border-[var(--glass-dropdown-border)] sm:hidden"></div>
-        <a href="#como-trabajo" data-nav="como-trabajo" class="nav-link flex items-center rounded-xl px-3 py-2.5 transition-colors duration-150">Cómo Trabajo</a>
-        <a href="#hosting" data-nav="hosting" class="nav-link flex items-center rounded-xl px-3 py-2.5 transition-colors duration-150">Hosting & DevOps</a>
-        <a href="#construyendo" data-nav="construyendo" class="nav-link flex items-center rounded-xl px-3 py-2.5 transition-colors duration-150">Actualmente Construyendo</a>
-        <a href="#faq" data-nav="faq" class="nav-link flex items-center rounded-xl px-3 py-2.5 transition-colors duration-150">FAQ</a>
+        <a href="#como-trabajo" data-nav="como-trabajo" class="nav-link flex items-center rounded-xl px-3 py-3 transition-colors duration-150">Cómo Trabajo</a>
+        <a href="#hosting" data-nav="hosting" class="nav-link flex items-center rounded-xl px-3 py-3 transition-colors duration-150">Hosting & DevOps</a>
+        <a href="#construyendo" data-nav="construyendo" class="nav-link flex items-center rounded-xl px-3 py-3 transition-colors duration-150">Actualmente Construyendo</a>
+        <a href="#faq" data-nav="faq" class="nav-link flex items-center rounded-xl px-3 py-3 transition-colors duration-150">FAQ</a>
       </div>
     </div>
 

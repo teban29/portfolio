@@ -1,0 +1,143 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-07-30T18:00:00.000Z",
+  "title": "Design System: Esteban Cardona — Portfolio",
+  "extensions": {
+    "colorMeta": {
+      "azul-acero": { "role": "primary", "displayName": "Azul Acero", "canonical": "oklch(0.380 0.160 275)", "tonalRamp": ["oklch(0.10 0.08 275)", "oklch(0.16 0.10 275)", "oklch(0.22 0.12 275)", "oklch(0.30 0.14 275)", "oklch(0.380 0.160 275)", "oklch(0.500 0.175 275)", "oklch(0.65 0.12 275)", "oklch(0.80 0.08 275)", "oklch(0.90 0.04 275)", "oklch(0.95 0.02 275)"] },
+      "azul-acero-brillo": { "role": "primary", "displayName": "Azul Acero Brillo", "canonical": "oklch(0.500 0.175 275)", "tonalRamp": [] },
+      "azul-acero-tenue": { "role": "neutral", "displayName": "Azul Acero Tenue", "canonical": "oklch(0.520 0.006 275)", "tonalRamp": [] },
+      "rojo-ladrillo": { "role": "accent", "displayName": "Rojo Ladrillo", "canonical": "oklch(0.540 0.185 20)", "tonalRamp": ["oklch(0.45 0.16 20)", "oklch(0.540 0.185 20)", "oklch(0.64 0.175 20)"] },
+      "papel": { "role": "neutral", "displayName": "Papel", "canonical": "oklch(1.000 0.000 0)", "tonalRamp": [] },
+      "gris-azulado-claro": { "role": "neutral", "displayName": "Gris Azulado Claro", "canonical": "oklch(0.955 0.008 275)", "tonalRamp": [] },
+      "gris-azulado-oscuro": { "role": "neutral", "displayName": "Gris Azulado Oscuro", "canonical": "oklch(0.095 0.018 275)", "tonalRamp": [] },
+      "tinta-clara": { "role": "neutral", "displayName": "Tinta Clara", "canonical": "oklch(0.115 0.005 275)", "tonalRamp": [] },
+      "tinta-oscura": { "role": "neutral", "displayName": "Tinta Oscura", "canonical": "oklch(0.920 0.002 0)", "tonalRamp": [] },
+      "borde-claro": { "role": "neutral", "displayName": "Borde Claro", "canonical": "oklch(0.880 0.005 275)", "tonalRamp": [] },
+      "borde-oscuro": { "role": "neutral", "displayName": "Borde Oscuro", "canonical": "oklch(0.220 0.005 275)", "tonalRamp": [] }
+    },
+    "typographyMeta": {
+      "hero": { "displayName": "Hero", "purpose": "Nombre propio en el hero. Una sola vez por página." },
+      "display": { "displayName": "Display / Section Heading", "purpose": "Títulos de sección (h2)." },
+      "title": { "displayName": "Title", "purpose": "Títulos de tarjetas, servicios, proyectos." },
+      "body": { "displayName": "Body", "purpose": "Descripciones y párrafos. Máximo ~65ch por línea." },
+      "body-large": { "displayName": "Body Large", "purpose": "Párrafos de énfasis, Sobre Mí." },
+      "label": { "displayName": "Label / Mono", "purpose": "Etiquetas de sección, números, chips, tags." }
+    },
+    "shadows": [
+      { "name": "glass-shadow", "value": "0 8px 40px oklch(0 0 0 / 0.08), 0 0 0 0.5px oklch(0 0 0 / 0.06) inset, 0 1px 0 oklch(1 0 0 / 0.6) inset", "purpose": "Navbar y dropdowns en modo claro." },
+      { "name": "card-hover-shadow", "value": "0 4px 20px oklch(0 0 0 / 0.06)", "purpose": "Hover de tarjetas y filas de servicios." },
+      { "name": "primary-glow", "value": "0 0 30px oklch(0.500 0.175 275 / 0.35)", "purpose": "Hover del botón primario." },
+      { "name": "glass-dropdown-shadow", "value": "0 16px 48px oklch(0 0 0 / 0.12)", "purpose": "Dropdowns y menús flotantes." }
+    ],
+    "motion": [
+      { "name": "ease-smooth", "value": "cubic-bezier(0.22, 1, 0.36, 1)", "purpose": "Reveals al scroll, transiciones de estado." },
+      { "name": "duration-fast", "value": "0.2s", "purpose": "Hover en links, iconos, chips." },
+      { "name": "duration-medium", "value": "0.3s", "purpose": "Transiciones de botones, cards, bordes." },
+      { "name": "duration-slow", "value": "0.5s–0.6s", "purpose": "Reveal animations de secciones." }
+    ],
+    "breakpoints": [
+      { "name": "sm", "value": "640px" },
+      { "name": "lg", "value": "1024px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "CTA principal. Fondo azul acero, texto blanco, full rounded.",
+      "html": "<button class=\"ds-btn-primary\">Ver proyectos</button>",
+      "css": ".ds-btn-primary { background: oklch(0.380 0.160 275); color: #fff; padding: 0.75rem 1.75rem; border-radius: 9999px; font-family: 'Sora', ui-sans-serif, system-ui, sans-serif; font-size: 0.875rem; font-weight: 600; border: none; cursor: pointer; transition: background 0.3s, box-shadow 0.3s; } .ds-btn-primary:hover { background: oklch(0.500 0.175 275); box-shadow: 0 0 30px oklch(0.500 0.175 275 / 0.35); } .ds-btn-primary:focus-visible { outline: 2px solid oklch(0.500 0.175 275); outline-offset: 2px; }"
+    },
+    {
+      "name": "Ghost Button",
+      "kind": "button",
+      "refersTo": "button-ghost",
+      "description": "Borde sutil, sin fondo. Para acciones secundarias.",
+      "html": "<button class=\"ds-btn-ghost\">Contáctame</button>",
+      "css": ".ds-btn-ghost { background: transparent; color: oklch(0.115 0.005 275); padding: 0.75rem 1.75rem; border-radius: 9999px; font-family: 'Sora', ui-sans-serif, system-ui, sans-serif; font-size: 0.875rem; font-weight: 600; border: 1px solid oklch(0 0 0 / 0.15); cursor: pointer; transition: background 0.3s, border-color 0.3s; } .ds-btn-ghost:hover { background: oklch(0 0 0 / 0.05); border-color: oklch(0.115 0.005 275); } .ds-btn-ghost:focus-visible { outline: 2px solid oklch(0.500 0.175 275); outline-offset: 2px; }"
+    },
+    {
+      "name": "Contact Bubble",
+      "kind": "custom",
+      "refersTo": "contact-bubble",
+      "description": "Botón flotante @ con menú de contacto. Fijo en esquina inferior derecha.",
+      "html": "<div style=\"position:fixed;bottom:1.5rem;right:1.5rem;z-index:50;display:flex;flex-direction:column;align-items:flex-end;\"><button class=\"ds-contact-btn\" aria-label=\"Opciones de contacto\">@</button><div class=\"ds-contact-menu\" style=\"display:none;\"><a class=\"ds-contact-link\" href=\"#\">WhatsApp</a><a class=\"ds-contact-link\" href=\"#\">Email</a></div></div>",
+      "css": ".ds-contact-btn { width:56px;height:56px;border-radius:9999px;font-size:1.25rem;font-weight:700;border:none;cursor:pointer;background:linear-gradient(180deg, oklch(1 0 0 / 0.70), oklch(0.97 0.005 275 / 0.40));backdrop-filter:blur(40px) saturate(180%);box-shadow:0 8px 40px oklch(0 0 0 / 0.08), 0 0 0 0.5px oklch(0 0 0 / 0.06) inset, 0 1px 0 oklch(1 0 0 / 0.6) inset;color:oklch(0.115 0.005 275);transition:transform 0.3s; } .ds-contact-btn:hover { transform:scale(1.1); } .ds-contact-btn:focus-visible { outline:2px solid oklch(0.500 0.175 275); outline-offset:2px; } .ds-contact-menu { position:absolute;bottom:calc(100% + 0.75rem);right:0;width:16rem;border-radius:1rem;border:1px solid oklch(0 0 0 / 0.08);padding:0.5rem;background:oklch(1 0 0 / 0.92);backdrop-filter:blur(24px);box-shadow:0 16px 48px oklch(0 0 0 / 0.12); } .ds-contact-link { display:flex;align-items:center;gap:0.75rem;border-radius:0.75rem;padding:0.625rem 0.75rem;font-size:0.875rem;color:oklch(0.45 0.008 275 / 0.65);text-decoration:none;transition:color 0.15s, background 0.15s; } .ds-contact-link:hover { color:oklch(0.115 0.005 275); background:oklch(0 0 0 / 0.04); }"
+    },
+    {
+      "name": "Chip / Tag",
+      "kind": "chip",
+      "refersTo": "chip",
+      "description": "Tags de tecnología y categorías. JetBrains Mono, full rounded.",
+      "html": "<span class=\"ds-chip\">Django REST</span>",
+      "css": ".ds-chip { display:inline-flex;align-items:center;padding:0.25rem 0.625rem;border-radius:9999px;background:oklch(0.955 0.008 275);color:oklch(0.520 0.006 275);font-family:'JetBrains Mono',ui-monospace,monospace;font-size:0.75rem;font-weight:500;border:1px solid oklch(0.880 0.005 275); }"
+    },
+    {
+      "name": "Card",
+      "kind": "card",
+      "refersTo": "card",
+      "description": "Contenedor de proyectos y secciones. rounded-2xl, borde sutil.",
+      "html": "<div class=\"ds-card\"><h3 style=\"font-family:'Sora',sans-serif;font-weight:600;\">Project Title</h3><p style=\"color:oklch(0.520 0.006 275);font-size:0.875rem;\">Description text</p></div>",
+      "css": ".ds-card { border-radius:1rem;border:1px solid oklch(0.880 0.005 275 / 0.6);padding:1.25rem;background:oklch(1.000 0.000 0);transition:border-color 0.3s, box-shadow 0.3s; } .ds-card:hover { border-color:oklch(0.880 0.005 275); box-shadow:0 4px 20px oklch(0 0 0 / 0.06); }"
+    },
+    {
+      "name": "Navbar",
+      "kind": "nav",
+      "refersTo": "navbar",
+      "description": "Island pill flotante centrado con glass effect.",
+      "html": "<nav class=\"ds-nav\"><a class=\"ds-nav-link\" href=\"#\">Inicio</a><a class=\"ds-nav-link ds-nav-active\" href=\"#\">Servicios</a><a class=\"ds-nav-link\" href=\"#\">Proyectos</a></nav>",
+      "css": ".ds-nav { display:flex;align-items:center;gap:0;position:fixed;top:1rem;left:50%;transform:translateX(-50%);z-index:50;padding:0.5rem 0.75rem;border-radius:9999px;background:linear-gradient(180deg, oklch(1 0 0 / 0.70), oklch(0.97 0.005 275 / 0.40));backdrop-filter:blur(40px) saturate(180%);box-shadow:0 8px 40px oklch(0 0 0 / 0.08), 0 0 0 0.5px oklch(0 0 0 / 0.06) inset, 0 1px 0 oklch(1 0 0 / 0.6) inset;font-family:'Sora',sans-serif;font-size:0.875rem; } .ds-nav-link { padding:0.375rem 0.75rem;border-radius:9999px;color:oklch(0.45 0.008 275 / 0.65);text-decoration:none;transition:color 0.2s, background 0.2s; } .ds-nav-link:hover, .ds-nav-active { color:oklch(0.115 0.005 275); background:oklch(0 0 0 / 0.05); }"
+    },
+    {
+      "name": "Stack Layer (Tecnologías)",
+      "kind": "custom",
+      "refersTo": "stack-layer",
+      "description": "Fila de categoría tecnológica con dot indicator y pills.",
+      "html": "<div class=\"ds-stack-layer\"><span class=\"ds-stack-dot\" style=\"background:oklch(0.380 0.160 275);\"></span><h3>Frontend</h3><div><span class=\"ds-chip\">React</span><span class=\"ds-chip\">TypeScript</span></div></div>",
+      "css": ".ds-stack-layer { display:flex;flex-direction:column;gap:0.5rem;padding:1.75rem 1.25rem;border-bottom:1px solid oklch(0.880 0.005 275);transition:box-shadow 0.3s; } .ds-stack-layer:hover { box-shadow:0 4px 20px oklch(0 0 0 / 0.06); } .ds-stack-layer:last-child { border-bottom:none; } .ds-stack-dot { display:inline-block;width:8px;height:8px;border-radius:9999px;flex-shrink:0; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "El taller iluminado",
+    "overview": "El sistema visual es un taller de desarrollador iluminado: precisión técnica, ordenado, pero con una luz cálida que lo hace humano. No es una terminal estéril ni una agencia de diseño distante; es el espacio de trabajo de alguien que construye cosas con las manos y quiere que las visitas se sientan en confianza. La interfaz comunica competencia sin arrogancia y calidez sin ornamentación innecesaria. Cada sección dice una sola cosa. El ritmo es pausado, el espacio es generoso, y los detalles pequeños —un borde perfecto, un hover inmediato, un chip mono— hacen el trabajo de la personalidad. El diseño se siente como una conversación técnica directa: clara, sin vueltas, con atención puesta en lo que funciona.",
+    "keyCharacteristics": [
+      "Técnico con alma: estructura de dev tool, tono cercano.",
+      "Luz controlada: fondos limpios, acento índigo azulado con toques de rojo ladrillo para estado y calidez.",
+      "Cristal esmerilado: la navegación flota con blur y bordes sutiles; el resto del sistema se apoya en capas tonales.",
+      "Tipografía con dos voces: Sora para la voz principal; JetBrains Mono para etiquetas, números y código.",
+      "Motion con propósito: reveals suaves al scroll, estados inmediatos, respeto total por prefers-reduced-motion."
+    ],
+    "rules": [
+      { "name": "One Pulse Rule", "body": "El rojo ladrillo solo aparece en indicadores de estado vivo (disponible, en producción, en vivo). Su escasez es la señal.", "section": "colors" },
+      { "name": "Cool-Tint Rule", "body": "Todos los grises neutros llevan tinte azulado; nunca son grises puros. Eso mantiene la coherencia técnica sin caer en frío corporativo.", "section": "colors" },
+      { "name": "One-Emphasis Rule", "body": "Los labels mono son oscuros y discretos. No usan all-caps tracking amplio como scaffolding visual; su trabajo es identificar, no decorar.", "section": "typography" },
+      { "name": "6rem Ceiling Rule", "body": "Ningún display excede 6rem. El hero es grande, pero no un billboard.", "section": "typography" },
+      { "name": "Glass-Only Rule", "body": "El blur + backdrop-filter es privilegio de la navegación y menús flotantes. No se usa como textura de fondo general.", "section": "elevation" },
+      { "name": "Flat-By-Default Rule", "body": "Las superficies de contenido son planas. La profundidad llega como respuesta a estado (hover, focus, activo) o como capa funcional (navbar, dropdown).", "section": "elevation" },
+      { "name": "Shared Reveal Rule", "body": "No crear IntersectionObservers por componente. Usar el data-reveal compartido desde Layout para todas las animaciones de entrada al hacer scroll.", "section": "components" }
+    ],
+    "dos": [
+      "Mantener fondos limpios (papel, gris-azulado-claro) y dejar que el azul acero guíe la atención.",
+      "Usar JetBrains Mono para números de proceso, etiquetas de sección y tecnologías.",
+      "Respetar prefers-reduced-motion en toda animación; la accesibilidad no es un extra.",
+      "Usar text-balance en títulos y clamp() para escalas fluidas.",
+      "Mantener una idea por fold; espacio vertical generoso pero con ritmo variado entre secciones.",
+      "Usar el rojo ladrillo solo para indicadores de estado vivo.",
+      "Contrastar ≥ 4.5:1 para todo texto de cuerpo en ambos modos."
+    ],
+    "donts": [
+      "Usar gradient text (background-clip: text). Los títulos usan un color sólido.",
+      "Usar glassmorphism como textura de fondo general; solo navegación y menús flotantes.",
+      "Poner tiny uppercase tracked labels sobre cada sección como scaffolding. El mono label es voz técnica, no decoración.",
+      "Usar cards idénticas en grid como solución por defecto. Variar proporciones cuando el contenido lo permita.",
+      "Usar bordes laterales gruesos como acento (side-stripe borders).",
+      "Usar hero-metric templates (big number + small label + stats).",
+      "Caer en el portfolio dev genérico: foto + nombre grande + grid de iconos de tecnologías + barras de skill.",
+      "Usar neon, gradients de fondo llamativos o bounce easing en animaciones.",
+      "Exceder 6rem en display headings.",
+      "Crear IntersectionObservers por componente. Usar el data-reveal compartido desde Layout."
+    ]
+  }
+}

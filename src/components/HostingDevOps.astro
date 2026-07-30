@@ -3,7 +3,7 @@
 
 <section
   id="hosting"
-  class="relative overflow-hidden bg-surface py-24 sm:py-32"
+  class="relative overflow-hidden bg-surface py-20 sm:py-28"
 >
   <div class="mx-auto max-w-6xl px-6">
     <div class="mb-14 sm:mb-20">
@@ -11,10 +11,10 @@
         Infraestructura
       </p>
       <h2 class="text-balance font-sans text-[clamp(2rem,4vw,3rem)] font-bold leading-[1.12] tracking-[-0.02em] text-ink">
-        Hosting & DevOps
+        De deploy a<br />mantenimiento
       </h2>
       <p class="mt-4 max-w-md text-base leading-relaxed text-muted">
-        No solo escribo código: despliego, monitoreo y mantengo aplicaciones en producción con infraestructura robusta.
+        También me encargo de que tu aplicación no solo exista, sino que funcione estable, segura y rápida en producción.
       </p>
     </div>
 
@@ -30,7 +30,10 @@
           <span class="ml-2 text-xs font-mono text-muted-on-dark/60">esteban@server:~</span>
         </div>
 
-        <div class="p-4 font-mono text-sm leading-relaxed sm:p-5">
+        <div class="p-4 font-mono text-sm leading-relaxed sm:p-5" aria-hidden="true">
+          <p class="sr-only">
+            Ejemplo de salida de terminal: contenedores Docker corriendo, incluyendo aplicación web, base de datos y servidor web.
+          </p>
           <div class="mb-1 flex items-center gap-2">
             <span class="text-green-500">➜</span>
             <span class="text-blue-500">~</span>
@@ -100,15 +103,15 @@
       </div>
       <div class="rounded-2xl border border-border bg-bg p-6 transition-all duration-200 hover:border-primary/20 hover:shadow-sm">
         <div class="mb-3 flex h-10 w-10 items-center justify-center rounded-xl bg-primary/10 text-primary">
-          <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
             <rect width="20" height="8" x="2" y="2" rx="2" ry="2"/>
             <rect width="20" height="8" x="2" y="14" rx="2" ry="2"/>
             <line x1="6" x2="6.01" y1="6" y2="6"/>
             <line x1="6" x2="6.01" y1="18" y2="18"/>
           </svg>
         </div>
-        <h3 class="mb-2 text-lg font-semibold text-ink">VPS & Servidores Dedicados</h3>
-        <p class="text-sm leading-relaxed text-muted">
+        <h3 class="mb-2 break-words text-lg font-semibold text-ink">VPS & Servidores Dedicados</h3>
+        <p class="break-words text-sm leading-relaxed text-muted">
           Configuración y mantenimiento de servidores VPS (DigitalOcean, Hetzner, AWS Lightsail).
           Optimización de recursos, hardening de seguridad y monitoreo continuo.
         </p>
@@ -118,13 +121,13 @@
     <div class="space-y-6">
       <div class="rounded-2xl border border-border bg-bg p-6 transition-all duration-200 hover:border-primary/20 hover:shadow-sm">
           <div class="mb-3 flex h-10 w-10 items-center justify-center rounded-xl bg-primary/10 text-primary">
-            <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
               <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"/>
               <path d="m9 12 2 2 4-4"/>
             </svg>
           </div>
-          <h3 class="mb-2 text-lg font-semibold text-ink">SSL & Seguridad</h3>
-          <p class="text-sm leading-relaxed text-muted">
+          <h3 class="mb-2 break-words text-lg font-semibold text-ink">SSL & Seguridad</h3>
+          <p class="break-words text-sm leading-relaxed text-muted">
             Implementación de certificados SSL/TLS con Let's Encrypt, configuración de firewalls (UFW),
             protección DDoS básica y auditorías de seguridad periódicas.
           </p>
@@ -132,15 +135,15 @@
 
         <div class="rounded-2xl border border-border bg-bg p-6 transition-all duration-200 hover:border-primary/20 hover:shadow-sm">
           <div class="mb-3 flex h-10 w-10 items-center justify-center rounded-xl bg-primary/10 text-primary">
-            <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
               <path d="M21 12a9 9 0 0 0-9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/>
               <path d="M3 3v5h5"/>
               <path d="M3 12a9 9 0 0 0 9 9 9.75 9.75 0 0 0 6.74-2.74L21 16"/>
               <path d="M16 16h5v5"/>
             </svg>
           </div>
-          <h3 class="mb-2 text-lg font-semibold text-ink">CI/CD & Automatización</h3>
-          <p class="text-sm leading-relaxed text-muted">
+          <h3 class="mb-2 break-words text-lg font-semibold text-ink">CI/CD & Automatización</h3>
+          <p class="break-words text-sm leading-relaxed text-muted">
             Pipelines de despliegue continuo con GitHub Actions. Deploys automatizados, tests en cada push,
             rollback instantáneo y notificaciones en caso de fallos.
           </p>
@@ -148,7 +151,7 @@
 
         <div class="rounded-2xl border border-border bg-bg p-6 transition-all duration-200 hover:border-primary/20 hover:shadow-sm">
           <div class="mb-3 flex h-10 w-10 items-center justify-center rounded-xl bg-primary/10 text-primary">
-            <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
               <path d="M2 12h10"/>
               <path d="M9 4v16"/>
               <path d="m3 9 3 3-3 3"/>
@@ -157,8 +160,8 @@
               <rect width="8" height="8" x="14" y="8" rx="1"/>
             </svg>
           </div>
-          <h3 class="mb-2 text-lg font-semibold text-ink">Backups & Monitoreo</h3>
-          <p class="text-sm leading-relaxed text-muted">
+          <h3 class="mb-2 break-words text-lg font-semibold text-ink">Backups & Monitoreo</h3>
+          <p class="break-words text-sm leading-relaxed text-muted">
             Backups automatizados diarios con retención configurable. Monitoreo de uptime con UptimeRobot
             y alertas por email/Telegram ante cualquier anomalía.
           </p>

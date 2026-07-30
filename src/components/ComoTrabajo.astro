@@ -1,6 +1,6 @@
 <section
   id="como-trabajo"
-  class="relative bg-bg py-24 sm:py-32"
+  class="relative bg-bg py-24 sm:py-28"
 >
   <div class="mx-auto max-w-6xl px-6">
     <div class="mb-14 sm:mb-20">
@@ -20,7 +20,7 @@
         <div class="timeline-line-progress absolute inset-0 origin-left"></div>
       </div>
 
-      <div class="grid gap-8 sm:grid-cols-5 sm:gap-4 lg:gap-6">
+      <div class="grid gap-8 sm:grid-cols-5 sm:gap-3 lg:gap-5">
         {
           [
             {
@@ -71,7 +71,7 @@
 </section>
 
 <script>
-  function initTimeline() {
+  (function () {
     const section = document.getElementById("como-trabajo");
     if (!section) return;
 
@@ -80,18 +80,17 @@
 
     const observer = new IntersectionObserver(
       (entries) => {
-        entries.forEach((entry) => {
+        for (const entry of entries) {
           const phase = entry.target as HTMLElement;
           if (entry.isIntersecting) {
             phase.classList.add("is-active");
           }
-        });
+        }
       },
       { threshold: 0.3, rootMargin: "0px 0px -20% 0px" },
     );
 
-    phases.forEach((phase, i) => {
-      phase.style.setProperty("--phase-index", String(i));
+    phases.forEach((phase) => {
       observer.observe(phase);
     });
 
@@ -103,13 +102,11 @@
             progressBar.style.transform = `scaleX(${ratio})`;
           }
         },
-        { threshold: Array.from({ length: 20 }, (_, i) => i / 20) },
+        { threshold: [0, 0.1, 0.2, 0.3, 0.4, 0.5] },
       );
       sectionObserver.observe(section);
     }
-  }
-
-  initTimeline();
+  })();
 </script>
 
 <style is:inline>
@@ -123,12 +120,12 @@
     right: 8px;
     height: 2px;
     background: var(--border);
-    border-radius: 1px;
+    border-radius: 9999px;
   }
 
   .timeline-line-progress {
     background: linear-gradient(90deg, var(--primary), var(--primary-glow));
-    border-radius: 1px;
+    border-radius: 9999px;
     transform: scaleX(0);
     transition: transform 0.3s ease-out;
   }
@@ -145,8 +142,12 @@
   .process-phase.is-active .process-dot-core {
     opacity: 1;
     animation: dotGlowPulse 2s ease-in-out infinite;
-    animation-delay: calc(var(--phase-index, 0) * 0.15s);
   }
+
+  .process-phase:nth-child(2).is-active .process-dot-core { animation-delay: 0.15s; }
+  .process-phase:nth-child(3).is-active .process-dot-core { animation-delay: 0.30s; }
+  .process-phase:nth-child(4).is-active .process-dot-core { animation-delay: 0.45s; }
+  .process-phase:nth-child(5).is-active .process-dot-core { animation-delay: 0.60s; }
 
   .process-dot {
     transition: transform 0.3s ease;

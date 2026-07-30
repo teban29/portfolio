@@ -17,19 +17,27 @@
     const prefersReducedMotion = window.matchMedia(
       "(prefers-reduced-motion: reduce)",
     ).matches;
+    const isMobile = window.matchMedia("(max-width: 767px)").matches;
+    const isTouchDevice = window.matchMedia("(hover: none)").matches;
+
+    if (prefersReducedMotion || isMobile || isTouchDevice) {
+      canvas.style.display = "none";
+      return;
+    }
 
     const CONFIG = {
-      count: prefersReducedMotion ? 20 : 55,
-      connectDistance: 130,
-      particleSize: 1.4,
-      baseSpeed: 0.25,
-      mouseRadius: 160,
-      mouseForce: 0.15,
+      count: window.innerWidth < 1024 ? 20 : 32,
+      connectDistance: window.innerWidth < 1024 ? 90 : 120,
+      particleSize: window.innerWidth < 1024 ? 1 : 1.2,
+      baseSpeed: 0.18,
+      mouseRadius: 140,
+      mouseForce: 0.12,
     };
 
     const mouse = { x: -1000, y: -1000 };
     let particles: Particle[] = [];
     let animationId = 0;
+    let isVisible = true;
 
     interface Particle {
       x: number;
@@ -68,14 +76,19 @@
     }
 
     function draw() {
-      if (!ctx || !canvas) return;
+      if (!ctx || !canvas || !isVisible) {
+        return;
+      }
+
       const w = canvas.getBoundingClientRect().width;
       const h = canvas.getBoundingClientRect().height;
       const particleColor = getParticleColor();
+      const particlesLength = particles.length;
 
       ctx.clearRect(0, 0, w, h);
 
-      for (const p of particles) {
+      for (let i = 0; i < particlesLength; i++) {
+        const p = particles[i];
         const dx = p.x - mouse.x;
         const dy = p.y - mouse.y;
         const dist = Math.sqrt(dx * dx + dy * dy);
@@ -102,23 +115,25 @@
         ctx.beginPath();
         ctx.arc(p.x, p.y, CONFIG.particleSize, 0, Math.PI * 2);
         ctx.fillStyle = particleColor;
-        ctx.globalAlpha = 0.45;
+        ctx.globalAlpha = 0.4;
         ctx.fill();
       }
 
-      for (let i = 0; i < particles.length; i++) {
-        for (let j = i + 1; j < particles.length; j++) {
-          const dx = particles[i].x - particles[j].x;
-          const dy = particles[i].y - particles[j].y;
-          const dist = Math.sqrt(dx * dx + dy * dy);
-          if (dist < CONFIG.connectDistance) {
-            const alpha = 0.12 * (1 - dist / CONFIG.connectDistance);
+      for (let i = 0; i < particlesLength; i++) {
+        const pi = particles[i];
+        for (let j = i + 1; j < particlesLength; j++) {
+          const pj = particles[j];
+          const dx = pi.x - pj.x;
+          const dy = pi.y - pj.y;
+          const dist = dx * dx + dy * dy;
+          if (dist < CONFIG.connectDistance * CONFIG.connectDistance) {
+            const alpha = 0.1 * (1 - Math.sqrt(dist) / CONFIG.connectDistance);
             ctx.beginPath();
-            ctx.moveTo(particles[i].x, particles[i].y);
-            ctx.lineTo(particles[j].x, particles[j].y);
+            ctx.moveTo(pi.x, pi.y);
+            ctx.lineTo(pj.x, pj.y);
             ctx.strokeStyle = particleColor;
             ctx.globalAlpha = alpha;
-            ctx.lineWidth = 0.6;
+            ctx.lineWidth = 0.5;
             ctx.stroke();
           }
         }
@@ -128,12 +143,38 @@
       animationId = requestAnimationFrame(draw);
     }
 
-    window.addEventListener("resize", resize);
+    const visibilityObserver = new IntersectionObserver(
+      ([entry]) => {
+        isVisible = entry.isIntersecting;
+        if (!isVisible && animationId) {
+          cancelAnimationFrame(animationId);
+          animationId = 0;
+        } else if (isVisible && !animationId) {
+          animationId = requestAnimationFrame(draw);
+        }
+      },
+      { threshold: 0 },
+    );
+    visibilityObserver.observe(canvas);
+
+    const resizeObserver = new ResizeObserver(() => resize());
+    resizeObserver.observe(canvas.parentElement || canvas);
+
+    let rafId = 0;
+    let lastMouseX = -1000;
+    let lastMouseY = -1000;
 
     document.addEventListener("mousemove", (e) => {
-      const rect = canvas!.getBoundingClientRect();
-      mouse.x = e.clientX - rect.left;
-      mouse.y = e.clientY - rect.top;
+      lastMouseX = e.clientX;
+      lastMouseY = e.clientY;
+      if (!rafId) {
+        rafId = requestAnimationFrame(() => {
+          const rect = canvas!.getBoundingClientRect();
+          mouse.x = lastMouseX - rect.left;
+          mouse.y = lastMouseY - rect.top;
+          rafId = 0;
+        });
+      }
     });
 
     document.addEventListener("mouseleave", () => {
@@ -146,7 +187,8 @@
 
     return () => {
       cancelAnimationFrame(animationId);
-      window.removeEventListener("resize", resize);
+      visibilityObserver.disconnect();
+      resizeObserver.disconnect();
     };
   }
 

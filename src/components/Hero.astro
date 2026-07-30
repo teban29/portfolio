@@ -65,7 +65,7 @@
     <div class="word-reveal flex flex-wrap items-center justify-center gap-4" style="--w: 9">
       <a
         href="#proyectos"
-        class="group inline-flex items-center gap-2 rounded-full bg-primary px-7 py-3 text-sm font-semibold text-white transition-all duration-300 hover:bg-primary-glow hover:shadow-[0_0_30px_oklch(0.500_0.175_275_/_0.35)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-glow"
+        class="group inline-flex items-center gap-2 rounded-full bg-primary px-7 py-3 text-sm font-semibold text-white transition-all duration-300 hover:bg-primary-glow hover:shadow-primary-shadow focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-glow"
       >
         Ver proyectos
         <svg
@@ -76,6 +76,8 @@
           stroke-width="2"
           stroke-linecap="round"
           stroke-linejoin="round"
+          aria-hidden="true"
+          focusable="false"
         >
           <line x1="12" y1="5" x2="12" y2="19" />
           <polyline points="19 12 12 19 5 12" />
@@ -100,13 +102,15 @@
     >
       <span>Scroll</span>
       <svg
-        class="h-4 w-4 animate-bounce"
+        class="hero-scroll-icon h-4 w-4"
         viewBox="0 0 24 24"
         fill="none"
         stroke="currentColor"
         stroke-width="2"
         stroke-linecap="round"
         stroke-linejoin="round"
+        aria-hidden="true"
+        focusable="false"
       >
         <line x1="12" y1="5" x2="12" y2="19" />
         <polyline points="19 12 12 19 5 12" />
@@ -125,18 +129,35 @@
     ).matches;
     if (prefersReducedMotion) return;
 
+    const isMobile = window.matchMedia("(max-width: 767px)").matches;
+    const isTouchDevice = window.matchMedia("(hover: none)").matches;
+    if (isMobile || isTouchDevice) return;
+
     const rotateStrength = 2.5;
     const translateStrength = 4;
 
+    let rafId = 0;
+    let pendingX = 0;
+    let pendingY = 0;
+
     function handleMouse(e: MouseEvent) {
-      const rx = (e.clientY / window.innerHeight - 0.5) * -rotateStrength;
-      const ry = (e.clientX / window.innerWidth - 0.5) * rotateStrength;
-      const tx = (e.clientX / window.innerWidth - 0.5) * translateStrength;
-      const ty = (e.clientY / window.innerHeight - 0.5) * translateStrength;
-      content!.style.transform = `perspective(1000px) rotateX(${rx}deg) rotateY(${ry}deg) translate(${tx}px, ${ty}px)`;
+      pendingX = e.clientX;
+      pendingY = e.clientY;
+      if (!rafId) {
+        rafId = requestAnimationFrame(() => {
+          const rx = (pendingY / window.innerHeight - 0.5) * -rotateStrength;
+          const ry = (pendingX / window.innerWidth - 0.5) * rotateStrength;
+          const tx = (pendingX / window.innerWidth - 0.5) * translateStrength;
+          const ty = (pendingY / window.innerHeight - 0.5) * translateStrength;
+          content!.style.transform = `perspective(1000px) rotateX(${rx}deg) rotateY(${ry}deg) translate(${tx}px, ${ty}px)`;
+          rafId = 0;
+        });
+      }
     }
 
     function reset() {
+      if (rafId) cancelAnimationFrame(rafId);
+      rafId = 0;
       content!.style.transform =
         "perspective(1000px) rotateX(0deg) rotateY(0deg) translate(0px, 0px)";
     }
@@ -165,8 +186,8 @@
   .mesh-blob {
     position: absolute;
     border-radius: 50%;
-    filter: blur(90px);
-    will-change: transform;
+    filter: blur(60px);
+    will-change: filter, transform;
   }
 
   .mesh-blob--1 {
@@ -266,12 +287,30 @@
     }
   }
 
+  .hero-scroll-icon {
+    animation: heroScroll 2s ease-in-out infinite;
+  }
+
+  @keyframes heroScroll {
+    0%, 100% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+    50% {
+      transform: translateY(6px);
+      opacity: 0.6;
+    }
+  }
+
   @media (prefers-reduced-motion: reduce) {
     .mesh-blob {
       animation: none;
     }
     .word-reveal {
       opacity: 1;
+      animation: none;
+    }
+    .hero-scroll-icon {
       animation: none;
     }
   }
